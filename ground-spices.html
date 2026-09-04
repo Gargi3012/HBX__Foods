@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ground Spices & Blends | HBX Foods Export</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #12100E;
+      --bg-card: #181512;
+      --accent-terracotta: #8E3B29;
+      --accent-terracotta-hover: #752E1E;
+      --text-main: #FAF6F0;
+      --text-muted: #A39B92;
+      --border-subtle: rgba(244, 236, 228, 0.08);
+      --border-accent: rgba(142, 59, 41, 0.35);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    header {
+      height: 64px;
+      background: rgba(18, 16, 14, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 99;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-img-wrap {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-text h1 {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      letter-spacing: 1.5px;
+    }
+
+    .back-btn {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .back-btn:hover {
+      color: var(--text-main);
+    }
+
+    .page-hero {
+      padding: 120px 0 40px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: rgba(142, 59, 41, 0.15);
+      color: #E28873;
+      border: 1px solid rgba(142, 59, 41, 0.3);
+      margin-bottom: 12px;
+    }
+
+    .page-hero h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 4vw, 48px);
+      font-weight: 500;
+    }
+
+    .page-hero p {
+      color: var(--text-muted);
+      font-size: 15px;
+      max-width: 620px;
+      margin-top: 8px;
+    }
+
+    /* ---------------- ULTRA-CLEAN PRODUCTS GRID ---------------- */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 50px 0 100px;
+    }
+
+    .clean-p-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .clean-p-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    }
+
+    .c-img-wrap {
+      height: 220px;
+      background: #0E0C0B;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .c-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .clean-p-card:hover .c-img-wrap img {
+      transform: scale(1.05);
+    }
+
+    .c-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(18, 16, 14, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(244, 236, 228, 0.1);
+      color: #FAF6F0;
+    }
+
+    .c-body {
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      min-height: 74px; /* Symmetrical height across all cards */
+    }
+
+    .c-body h3 {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .c-btn {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #E28873;
+      background: rgba(142, 59, 41, 0.12);
+      border: 1px solid rgba(142, 59, 41, 0.25);
+      padding: 6px 13px;
+      border-radius: 999px;
+      white-space: nowrap; /* Arrow always stays on same line */
+      flex-shrink: 0;      /* Button never squishes */
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.25s ease;
+    }
+
+    .clean-p-card:hover .c-btn {
+      background: var(--accent-terracotta);
+      color: #FAF6F0;
+    }
+
+    /* ---------------- COMPACT & SCROLLABLE MODAL ---------------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(14px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: #181512;
+      border: 1px solid rgba(244, 236, 228, 0.14);
+      border-radius: 22px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      transform: translateY(20px) scale(0.97);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .modal-box::-webkit-scrollbar {
+      width: 5px;
+    }
+    .modal-box::-webkit-scrollbar-thumb {
+      background: rgba(244, 236, 228, 0.2);
+      border-radius: 999px;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(18, 16, 14, 0.85);
+      border: 1px solid rgba(244, 236, 228, 0.18);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .modal-close:hover {
+      background: var(--accent-terracotta);
+    }
+
+    .modal-img {
+      height: 140px;
+      width: 100%;
+      background: #0E0C0B;
+      position: relative;
+    }
+
+    .modal-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-content {
+      padding: 18px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-content h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .modal-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .modal-specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 4px 0;
+    }
+
+    .m-spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(244, 236, 228, 0.04);
+      padding-bottom: 5px;
+    }
+
+    .m-spec-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .m-spec-row span { color: var(--text-muted); }
+    .m-spec-row strong { color: #FAF6F0; }
+
+    .modal-actions {
+      margin-top: 4px;
+    }
+
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 999px;
+      background: var(--accent-terracotta);
+      color: #FAF6F0;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      background: var(--accent-terracotta-hover);
+    }
+
+    @media (max-width: 992px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; gap: 16px; }
+      .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+      }
+      .modal-box {
+        border-radius: 24px 24px 0 0;
+        max-height: 85vh;
+        overflow-y: auto;
+        transform: translateY(100%);
+      }
+      .modal-overlay.active .modal-box {
+        transform: translateY(0);
+      }
+      .modal-img { height: 130px; }
+      .modal-content { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html#categories" class="logo-brand">
+          <div class="logo-img-wrap"><img src="Logo - HBX Food.jpeg" alt="HBX Foods" /></div>
+          <div class="logo-text"><h1>HBX Foods</h1></div>
+        </a>
+        <a href="index.html#categories" class="back-btn">← Back to Categories</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Export Division 04</span>
+      <h2>Pure Ground Spices & Blended Masalas</h2>
+      <p>Cold-milled below 40°C to preserve volatile essential oils, natural aroma, and rich pigments. 100% pure with zero artificial colors or starch fillers.</p>
+    </div>
+  </section>
+
+  <!-- ================= ULTRA-CLEAN VISUAL GRID ================= -->
+  <div class="container">
+    <div class="products-grid">
+
+      <!-- 1. Pure Turmeric Powder -->
+      <div class="clean-p-card" onclick="openModal('turmeric-powder')">
+        <div class="c-img-wrap">
+          <img src="turmeric-powder-haldi.jpg" alt="Pure Turmeric Powder" />
+          <span class="c-tag">High Curcumin</span>
+        </div>
+        <div class="c-body">
+          <h3>Pure Turmeric Powder (Haldi)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 2. Kashmiri Chilli Powder -->
+      <div class="clean-p-card" onclick="openModal('kashmiri-chilli')">
+        <div class="c-img-wrap">
+          <img src="kashmiri-chilli-powder.jpg" alt="Kashmiri Chilli Powder" />
+          <span class="c-tag">Vibrant Crimson</span>
+        </div>
+        <div class="c-body">
+          <h3>Kashmiri Chilli Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 3. Coriander Powder -->
+      <div class="clean-p-card" onclick="openModal('coriander-powder')">
+        <div class="c-img-wrap">
+          <img src="coriander-powder-dhania.jpg" alt="Coriander Powder" />
+          <span class="c-tag">Cold Ground</span>
+        </div>
+        <div class="c-body">
+          <h3>Coriander Powder (Dhania)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 4. Garam Masala Powder -->
+      <div class="clean-p-card" onclick="openModal('garam-masala')">
+        <div class="c-img-wrap">
+          <img src="garam-masala-blend.jpg" alt="Royal Garam Masala Powder" />
+          <span class="c-tag">Master Blend</span>
+        </div>
+        <div class="c-body">
+          <h3>Royal Garam Masala Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 5. Dum Biryani Masala -->
+      <div class="clean-p-card" onclick="openModal('biryani-masala')">
+        <div class="c-img-wrap">
+          <img src="biryani-masala-dum.jpg" alt="Dum Biryani Masala" />
+          <span class="c-tag">Dum Spice Blend</span>
+        </div>
+        <div class="c-body">
+          <h3>Dum Biryani Masala</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 6. Amchoor Powder -->
+      <div class="clean-p-card" onclick="openModal('amchoor-powder')">
+        <div class="c-img-wrap">
+          <img src="amchoor-powder-dry.jpg" alt="Amchoor Powder" />
+          <span class="c-tag">Tangy Fruit</span>
+        </div>
+        <div class="c-body">
+          <h3>Amchoor (Raw Mango) Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 7. Standard Red Chilly Powder -->
+      <div class="clean-p-card" onclick="openModal('red-chilly-powder')">
+        <div class="c-img-wrap">
+          <img src="kashmiri-chilli-powder.jpg" alt="Red Chilly Powder" />
+          <span class="c-tag">Bold Heat</span>
+        </div>
+        <div class="c-body">
+          <h3>Red Chilly Powder (Lal Mirch)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 8. Red Chilly Powder (With Sticks) -->
+      <div class="clean-p-card" onclick="openModal('red-chilly-with-sticks')">
+        <div class="c-img-wrap">
+          <img src="kashmiri-chilli-powder.jpg" alt="Red Chilly Powder With Sticks" />
+          <span class="c-tag">Rustic Pungent</span>
+        </div>
+        <div class="c-body">
+          <h3>Red Chilly Powder (With Sticks)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 9. Red Chilly Powder (Without Sticks) -->
+      <div class="clean-p-card" onclick="openModal('red-chilly-without-sticks')">
+        <div class="c-img-wrap">
+          <img src="kashmiri-chilli-powder.jpg" alt="Red Chilly Powder Stemless" />
+          <span class="c-tag">Stemless Ultra Fine</span>
+        </div>
+        <div class="c-body">
+          <h3>Red Chilly Powder (Stemless)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 10. Dry Ginger Powder -->
+      <div class="clean-p-card" onclick="openModal('dry-ginger-powder')">
+        <div class="c-img-wrap">
+          <img src="coriander-powder-dhania.jpg" alt="Dry Ginger Powder" />
+          <span class="c-tag">Sharp Warmth</span>
+        </div>
+        <div class="c-body">
+          <h3>Dry Ginger Powder (Sonth)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 11. Chicken Masala Powder -->
+      <div class="clean-p-card" onclick="openModal('chicken-masala')">
+        <div class="c-img-wrap">
+          <img src="garam-masala-blend.jpg" alt="Chicken Masala Powder" />
+          <span class="c-tag">Rich Curry Blend</span>
+        </div>
+        <div class="c-body">
+          <h3>Chicken Masala Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 12. Kasuri Methi Powder -->
+      <div class="clean-p-card" onclick="openModal('kasuri-methi-powder')">
+        <div class="c-img-wrap">
+          <img src="coriander-powder-dhania.jpg" alt="Kasuri Methi Powder" />
+          <span class="c-tag">Nagauri Aromatic</span>
+        </div>
+        <div class="c-body">
+          <h3>Kasuri Methi Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 13. Meat Masala Powder -->
+      <div class="clean-p-card" onclick="openModal('meat-masala')">
+        <div class="c-img-wrap">
+          <img src="biryani-masala-dum.jpg" alt="Meat Masala Powder" />
+          <span class="c-tag">Robust Spices</span>
+        </div>
+        <div class="c-body">
+          <h3>Meat Masala Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 14. Chaat Masala Powder -->
+      <div class="clean-p-card" onclick="openModal('chaat-masala')">
+        <div class="c-img-wrap">
+          <img src="amchoor-powder-dry.jpg" alt="Chaat Masala Powder" />
+          <span class="c-tag">Tangy Zing</span>
+        </div>
+        <div class="c-body">
+          <h3>Chaat Masala Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 15. Fennel Powder (Saunf) -->
+      <div class="clean-p-card" onclick="openModal('fennel-powder')">
+        <div class="c-img-wrap">
+          <img src="coriander-powder-dhania.jpg" alt="Fennel Powder" />
+          <span class="c-tag">Sweet Digestive</span>
+        </div>
+        <div class="c-body">
+          <h3>Fennel Powder (Saunf)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 16. Sambhar Masala Powder -->
+      <div class="clean-p-card" onclick="openModal('sambhar-masala')">
+        <div class="c-img-wrap">
+          <img src="garam-masala-blend.jpg" alt="Sambhar Masala Powder" />
+          <span class="c-tag">South Indian Blend</span>
+        </div>
+        <div class="c-body">
+          <h3>Sambhar Masala Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 17. Black Salt Powder (Kala Namak) -->
+      <div class="clean-p-card" onclick="openModal('black-salt-powder')">
+        <div class="c-img-wrap">
+          <img src="amchoor-powder-dry.jpg" alt="Black Salt Powder" />
+          <span class="c-tag">Mineral Rich</span>
+        </div>
+        <div class="c-body">
+          <h3>Black Salt Powder (Kala Namak)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 18. Carom Seed Powder (Ajwain) -->
+      <div class="clean-p-card" onclick="openModal('carom-powder')">
+        <div class="c-img-wrap">
+          <img src="coriander-powder-dhania.jpg" alt="Carom Seed Powder" />
+          <span class="c-tag">Thymol Digestive</span>
+        </div>
+        <div class="c-body">
+          <h3>Carom Seed Powder (Ajwain)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 19. Heeng Powder (Compounded) -->
+      <div class="clean-p-card" onclick="openModal('heeng-powder')">
+        <div class="c-img-wrap">
+          <img src="amchoor-powder-dry.jpg" alt="Compounded Heeng Powder" />
+          <span class="c-tag">Aromatic Hing</span>
+        </div>
+        <div class="c-body">
+          <h3>Compounded Heeng Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 20. Golden Heeng Powder -->
+      <div class="clean-p-card" onclick="openModal('golden-heeng-powder')">
+        <div class="c-img-wrap">
+          <img src="turmeric-powder-haldi.jpg" alt="Golden Heeng Powder" />
+          <span class="c-tag">Royal Reserve</span>
+        </div>
+        <div class="c-body">
+          <h3>Golden Heeng Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 21. Poha Masala Powder -->
+      <div class="clean-p-card" onclick="openModal('poha-masala')">
+        <div class="c-img-wrap">
+          <img src="garam-masala-blend.jpg" alt="Poha Masala Powder" />
+          <span class="c-tag">Breakfast Zing</span>
+        </div>
+        <div class="c-body">
+          <h3>Poha Masala Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 22. Lassi Masala Powder -->
+      <div class="clean-p-card" onclick="openModal('lassi-masala')">
+        <div class="c-img-wrap">
+          <img src="amchoor-powder-dry.jpg" alt="Lassi Masala Powder" />
+          <span class="c-tag">Cooling Herbs</span>
+        </div>
+        <div class="c-body">
+          <h3>Lassi Masala Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 23. Amba Haldi Powder -->
+      <div class="clean-p-card" onclick="openModal('amba-haldi-powder')">
+        <div class="c-img-wrap">
+          <img src="turmeric-powder-haldi.jpg" alt="Amba Haldi Powder" />
+          <span class="c-tag">Mango Ginger</span>
+        </div>
+        <div class="c-body">
+          <h3>Amba Haldi Powder (Mango Ginger)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= FLOATING DETAIL MODAL / SHEET ================= -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-close" onclick="closeModalDirect()">✕</div>
+      <div class="modal-img">
+        <img id="modalImg" src="" alt="Product Detail" />
+      </div>
+      <div class="modal-content">
+        <h3 id="modalTitle">Product Name</h3>
+        <p id="modalDesc">Product description will appear here.</p>
+        
+        <div class="modal-specs-list" id="modalSpecs">
+          <!-- Dynamic specs injected -->
+        </div>
+
+        <div class="modal-actions">
+          <a id="modalWhatsapp" href="#" target="_blank" class="whatsapp-btn">
+            Inquire This Item on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    const productData = {
+      'turmeric-powder': {
+        title: 'Pure Turmeric Powder (Haldi)',
+        desc: 'Milled from select high-curcumin Salem and Nizamabad fingers below 40°C. Vibrant golden color with rich, earthy aroma and zero chemical starch.',
+        img: 'turmeric-powder-haldi.jpg',
+        specs: {
+          'Curcumin Content': '3.0% - 5.0% Certified',
+          'Mesh Fineness': '60 to 80 Mesh Fine',
+          'Moisture Content': 'Under 8.0% ISO Certified',
+          'Packaging': '25kg Food-Grade HDPE Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'kashmiri-chilli': {
+        title: 'Kashmiri Chilli Powder',
+        desc: 'Prized across gourmet world kitchens for its luminous natural ruby red color and gentle warmth. Cold-pulverized from de-stemmed whole Kashmiri chillies.',
+        img: 'kashmiri-chilli-powder.jpg',
+        specs: {
+          'Color Value (ASTA)': '120 - 150 ASTA High Color',
+          'Pungency (Heat)': '10,000 - 15,000 SHU (Mild)',
+          'Stem Content': 'Zero (100% De-Stemmed)',
+          'Packaging': '25kg Multi-layer Kraft Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'coriander-powder': {
+        title: 'Coriander Powder (Dhania)',
+        desc: 'Milled from prime Rajasthan Eagle & Scooter grade coriander seeds. Delivers fresh citrus-floral notes that enrich curry sauces and spice rubs.',
+        img: 'coriander-powder-dhania.jpg',
+        specs: {
+          'Volatile Oil': 'Volatile Oil > 0.35% v/w Certified',
+          'Mesh Fineness': '50 to 70 Mesh Uniform',
+          'Purity Standard': '100% Pure, Zero Husk Added',
+          'Packaging': '25kg / 50kg PP Woven Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'garam-masala': {
+        title: 'Royal Garam Masala Powder',
+        desc: 'A signature culinary heritage blend uniting green cardamom, Ceylon cinnamon quills, cloves, mace, nutmeg, and black pepper for intense aroma.',
+        img: 'garam-masala-blend.jpg',
+        specs: {
+          'Formulation': 'Authentic 12-Spice Synergy',
+          'Aroma Profile': 'Intense Warm Sweet-Pungent',
+          'Purity Standard': 'Zero Flour / Zero Starch Fillers',
+          'Packaging': '10kg / 20kg Vacuum-Sealed Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'biryani-masala': {
+        title: 'Dum Biryani Masala',
+        desc: 'Slow-dum formulation calibrated with stone flower (dagad phool), shahi jeera, star anise, and green cardamom for royal dum biryani aroma.',
+        img: 'biryani-masala-dum.jpg',
+        specs: {
+          'Blend Category': 'Artisanal Dum Masala',
+          'Key Aromatics': 'Shahi Jeera, Mace, Dagad Phool',
+          'Moisture Content': 'Under 8.5% Max',
+          'Packaging': '15kg Food-Grade Nitrogen Pouch',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'amchoor-powder': {
+        title: 'Amchoor (Raw Mango) Powder',
+        desc: 'Milled from selected sun-dried green raw mango slices. Imparts pure tartness and mouth-watering sour zest without adding excess moisture to dishes.',
+        img: 'amchoor-powder-dry.jpg',
+        specs: {
+          'Acidity Level': '12.0% - 15.0% Natural Tartaric Acid',
+          'Texture': 'Smooth Pale-Beige Powder',
+          'Processing': 'Sun-Dried, Zero Chemical Bleach',
+          'Packaging': '25kg Polylined HDPE Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'red-chilly-powder': {
+        title: 'Red Chilly Powder (Lal Mirch)',
+        desc: 'Recreate a bold, sizzling kick of authentic heat. Meticulously processed from hand picked hot peppers, our Red Chilly Powder delivers an intense, fiery punctuation and a rich red color to spice up your curries, stir fries, and marinades.',
+        img: 'kashmiri-chilli-powder.jpg',
+        specs: {
+          'Pungency (Heat)': '25,000 - 35,000 SHU (Fiery Hot)',
+          'Color Value': '60 - 80 ASTA Deep Natural Red',
+          'Packaging': '25kg Food-grade Poly-lined Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'red-chilly-with-sticks': {
+        title: 'Red Chilly Powder (With Sticks)',
+        desc: 'Experience the robust, rustic heat of traditional Indian spice markets. Ground from whole sun dried red chilies along with their natural stems, this authentic powder delivers a deep, earthy warmth and a slightly coarser texture that perfectly builds the fiery foundation of rich gravies, tadkas, and robust curries.',
+        img: 'kashmiri-chilli-powder.jpg',
+        specs: {
+          'Texture': 'Rustic Medium-Coarse Ground with Natural Stems',
+          'Purity Standard': '100% Sun-Dried Chillies with Natural Stems',
+          'Packaging': '25kg / 50kg Multi-ply Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'red-chilly-without-sticks': {
+        title: 'Red Chilly Powder (Stemless / Without Sticks)',
+        desc: 'Ignite your dishes with a pure, concentrated burst of fiery heat and brilliant crimson color. Milled exclusively from meticulously deseeded premium chilies, this ultra fine powder offers a sharp, vibrant piquancy that seamlessly dissolves into your sauces, soups, and marinades for a flawless, premium finish.',
+        img: 'kashmiri-chilli-powder.jpg',
+        specs: {
+          'Grade': '100% Stemless & De-seeded Pure Pods',
+          'Milling Fineness': '80 - 100 Mesh Ultra-Fine Powder',
+          'Packaging': '25kg Multi-wall Nitrogen Flush Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'dry-ginger-powder': {
+        title: 'Dry Ginger Powder (Sonth)',
+        desc: 'Pure, sharp flavor with a comforting warmth. Our premium Dry Ginger Powder is perfect for elevating your morning chai, specialized spice blends, baked goods, and authentic winter recipes.',
+        img: 'coriander-powder-dhania.jpg',
+        specs: {
+          'Active Compound': 'High Bioactive Gingerols & Shogaols',
+          'Moisture Content': 'Under 9.0% Max',
+          'Packaging': '25kg Poly-lined Kraft Paper Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'chicken-masala': {
+        title: 'Chicken Masala Powder',
+        desc: 'Bring home the secret to a perfectly spiced chicken curry. Our premium spice blend infuses deep into the meat, ensuring a succulent texture, rich aroma, and authentic, restaurant style flavor in every single bite.',
+        img: 'garam-masala-blend.jpg',
+        specs: {
+          'Blend Ingredients': '18+ Roasted Whole Spices & Herbs',
+          'Aroma & Flavor': 'Rich, Savory, Deep Restaurant Aroma',
+          'Packaging': '25kg Bulk Bags / Custom Export Retail Pouches',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'kasuri-methi-powder': {
+        title: 'Kasuri Methi Powder',
+        desc: 'The ultimate aromatic finishing touch. Gently crush a handful of our premium, sun-dried Kasuri Methi over your simmering gravies and paranthas to release a distinct, sweet savory fragrance and authentic traditional taste.',
+        img: 'coriander-powder-dhania.jpg',
+        specs: {
+          'Origin': 'Nagaur, Rajasthan (World-Renowned Methi Belt)',
+          'Aroma Purity': '100% Natural Volatile Herbal Aroma',
+          'Packaging': '10kg / 20kg Double Poly Bags',
+          'Minimum Order (MOQ)': '5 Tons'
+        }
+      },
+      'meat-masala': {
+        title: 'Meat Masala Powder',
+        desc: 'The ultimate secret to a rich, savory curry. This masterfully balanced spice blend penetrates deep into ingredients, delivering an intense warmth, rich color, and unforgettable taste to every single bite.',
+        img: 'biryani-masala-dum.jpg',
+        specs: {
+          'Formulation': 'Slow-Roasted Black Cardamom, Clove & Star Anise Base',
+          'Flavor Depth': 'Intense Warmth, Rich Red-Brown Color',
+          'Packaging': '25kg Air-tight Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'chaat-masala': {
+        title: 'Chaat Masala Powder',
+        desc: 'Add an instant, mouthwatering twist to your favorite snacks, salads, and street food. Ground from premium ingredients, our Chaat Masala gives you a perfectly balanced burst of tangy, salty, and spicy flavors in every single pinch.',
+        img: 'amchoor-powder-dry.jpg',
+        specs: {
+          'Key Ingredients': 'Dried Mango, Black Salt, Cumin, Hing & Mint',
+          'Taste Profile': 'Zesty, Tangy, Salty & Piquant',
+          'Packaging': '25kg Drums / Export Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'fennel-powder': {
+        title: 'Fennel Powder (Saunf Powder)',
+        desc: 'A perfect balance of sweet aroma and digestive wellness. Our pure Fennel Powder is meticulously processed to retain its natural essential oils, elevating everything from traditional sweets to savory curries.',
+        img: 'coriander-powder-dhania.jpg',
+        specs: {
+          'Volatile Oil': 'Min 1.2% Essential Oil Retention',
+          'Color & Fineness': 'Pale Green Fine Powder (60-80 Mesh)',
+          'Packaging': '25kg Bags with Inner Liner',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'sambhar-masala': {
+        title: 'Sambhar Masala Powder',
+        desc: 'Recreate the true essence of the South in your kitchen. Infused with perfectly roasted lentils, aromatic curry leaves, and premium spices, our Sambhar Masala delivers that authentic, tangy, and deeply comforting flavor.',
+        img: 'garam-masala-blend.jpg',
+        specs: {
+          'Blend Ingredients': 'Roasted Chana & Toor Dal, Curry Leaves, Coriander, Fenugreek',
+          'Style': 'Authentic South Indian Traditional Roast',
+          'Packaging': '25kg Poly Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'black-salt-powder': {
+        title: 'Black Salt Powder (Kala Namak)',
+        desc: 'Bring a mouthwatering, savory twist to every pinch. Sprinkled this mineral rich, digestive salt over fresh fruits, crisp salads, fried snacks, and refreshing raitas to instantly wake up the natural flavors of your food.',
+        img: 'amchoor-powder-dry.jpg',
+        specs: {
+          'Mineral Content': 'Rich in Natural Trace Iron & Sulfur Minerals',
+          'Texture': 'Silky Fine Powder (80-100 Mesh)',
+          'Packaging': '25kg / 50kg PP Bags with Liner',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'carom-powder': {
+        title: 'Carom Seed Powder (Ajwain Powder)',
+        desc: 'An intense flavor burst with excellent digestive qualities. Our finely ground Ajwain Powder delivers a sharp, aromatic thyme like flavor that perfectly balances deep-fried snacks, breads, and classic subzis.',
+        img: 'coriander-powder-dhania.jpg',
+        specs: {
+          'Aromatic Profile': 'Potent Natural Thymol Concentration',
+          'Purity Standard': '100% Pure Ajwain (Zero Starch / Additives)',
+          'Packaging': '25kg Sealed Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'heeng-powder': {
+        title: 'Compounded Heeng Powder',
+        desc: 'Enhance both taste and digestion with the timeless essence of Bagani Heeng. Made from the finest ingredients, our strong, aromatic powder ensures your dishes are as healthy as they are delicious.',
+        img: 'amchoor-powder-dry.jpg',
+        specs: {
+          'Gum Resin Grade': 'High-Potency Pure Ferula Asafoetida',
+          'Form': 'Compounded Powdered Formulation',
+          'Packaging': '1kg / 5kg Sealed Cans, 25kg Drums',
+          'Minimum Order (MOQ)': '2 Tons'
+        }
+      },
+      'golden-heeng-powder': {
+        title: 'Golden Heeng Powder',
+        desc: 'Unlock an extraordinary depth of flavor. Our premium Golden Heeng Powder is carefully blended to offer an intense, authentic aroma and a rich culinary punch that effortlessly brings out the absolute best in your daily dals and subzis.',
+        img: 'turmeric-powder-haldi.jpg',
+        specs: {
+          'Grade': 'Royal Golden Reserve Aroma Grade',
+          'Potency': 'Super-Concentrated Traditional Aroma',
+          'Packaging': 'Food-Grade Air-tight Canisters',
+          'Minimum Order (MOQ)': '1 Ton'
+        }
+      },
+      'poha-masala': {
+        title: 'Poha Masala Powder',
+        desc: 'Add a lively, refreshing twist to your favorite morning staple. Our specialized Poha Masala features a balanced blend of tangy amchoor, roasted spices, and a hint of sweetness to make your breakfast uniquely flavorful and satisfying.',
+        img: 'garam-masala-blend.jpg',
+        specs: {
+          'Flavor Notes': 'Tangy Amchoor, Roasted Jeera, Saunf & Black Salt',
+          'Application': 'Instant Street-Style Poha & Sev Seasoning',
+          'Packaging': '25kg Bags',
+          'Minimum Order (MOQ)': '5 Tons'
+        }
+      },
+      'lassi-masala': {
+        title: 'Lassi Masala Powder',
+        desc: 'Upgrade your summer drinks with the perfect refreshing twist. Infused with a unique blend of cooling herbs and roasted spices, our Lassi Masala adds a tangy, mouthwatering kick to your classic buttermilk and lassi.',
+        img: 'amchoor-powder-dry.jpg',
+        specs: {
+          'Herbal Blend': 'Roasted Cumin, Sun-dried Mint Leaves, Black Salt & Spices',
+          'Usage': 'Cooling Chaas, Buttermilk & Savory Lassi',
+          'Packaging': '25kg Bags',
+          'Minimum Order (MOQ)': '5 Tons'
+        }
+      },
+      'amba-haldi-powder': {
+        title: 'Amba Haldi Powder (Mango Ginger)',
+        desc: 'Discover a unique blend of earthy warmth and fresh mango like aroma. Sourced for its high purity, Amba Haldi is celebrated for its incredible wellness benefits and brings a distinctly refreshing flavor and vibrant color to pickles, dals, and wellness drinks.',
+        img: 'turmeric-powder-haldi.jpg',
+        specs: {
+          'Botanical Variety': 'Curcuma amada (Mango Ginger)',
+          'Distinctive Quality': 'Pure Green Mango Aroma with Golden Hue',
+          'Packaging': '25kg Poly Bags',
+          'Minimum Order (MOQ)': '5 Tons'
+        }
+      }
+    };
+
+    function openModal(id) {
+      const data = productData[id];
+      if (!data) return;
+
+      document.getElementById('modalTitle').innerText = data.title;
+      document.getElementById('modalDesc').innerText = data.desc;
+      document.getElementById('modalImg').src = data.img;
+      
+      let specsHtml = '';
+      for (const [key, val] of Object.entries(data.specs)) {
+        const isMoq = key.toLowerCase().includes('moq') || key.toLowerCase().includes('minimum');
+        const valStyle = isMoq ? 'style="color: #E28873;"' : '';
+        specsHtml += `<div class="m-spec-row"><span>${key}</span><strong ${valStyle}>${val}</strong></div>`;
+      }
+      document.getElementById('modalSpecs').innerHTML = specsHtml;
+
+      document.getElementById('modalWhatsapp').href = `https://wa.me/919056003331?text=Hello%20HBX%20Foods,%20I%20am%20interested%20in%20ordering%20${encodeURIComponent(data.title)}.%20Please%20share%20FOB/CIF%20quote.`;
+
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'modalOverlay') {
+        closeModalDirect();
+      }
+    }
+
+    function closeModalDirect() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sortex Clean Seeds | HBX Foods Export</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #12100E;
+      --bg-card: #181512;
+      --accent-terracotta: #8E3B29;
+      --accent-terracotta-hover: #752E1E;
+      --text-main: #FAF6F0;
+      --text-muted: #A39B92;
+      --border-subtle: rgba(244, 236, 228, 0.08);
+      --border-accent: rgba(142, 59, 41, 0.35);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
+    header {
+      height: 64px;
+      background: rgba(18, 16, 14, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: fixed;
+      top: 0; left: 0; width: 100%; z-index: 99;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .logo-brand { display: flex; align-items: center; gap: 12px; }
+    .logo-img-wrap { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: #FFF; display: flex; align-items: center; justify-content: center; }
+    .logo-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .logo-text h1 { font-family: var(--font-serif); font-size: 19px; letter-spacing: 1.5px; text-transform: uppercase; }
+    .back-btn { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .back-btn:hover { color: #FAF6F0; }
+
+    /* Page Hero */
+    .page-hero { padding: 100px 0 30px; border-bottom: 1px solid var(--border-subtle); }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 10.5px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; background: rgba(142, 59, 41, 0.15); color: #E28873; border: 1px solid rgba(142, 59, 41, 0.3); margin-bottom: 8px; }
+    .page-hero h2 { font-family: var(--font-serif); font-size: clamp(30px, 3.5vw, 44px); font-weight: 500; }
+    .page-hero p { color: var(--text-muted); font-size: 14px; max-width: 580px; margin-top: 4px; }
+
+    /* ---------------- CLEAN VISUAL GRID ---------------- */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 40px 0 80px;
+    }
+
+    .clean-p-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 22px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s ease;
+    }
+
+    .clean-p-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+    }
+
+    .c-img-wrap {
+      height: 220px;
+      width: 100%;
+      background: #0E0C0B;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .c-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .clean-p-card:hover .c-img-wrap img {
+      transform: scale(1.06);
+    }
+
+    .c-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(18, 16, 14, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(244, 236, 228, 0.1);
+      color: #FAF6F0;
+    }
+
+    .c-body {
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      min-height: 74px;
+    }
+
+    .c-body h3 {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .c-btn {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #E28873;
+      background: rgba(142, 59, 41, 0.12);
+      border: 1px solid rgba(142, 59, 41, 0.25);
+      padding: 6px 13px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.25s ease;
+    }
+
+    .clean-p-card:hover .c-btn {
+      background: var(--accent-terracotta);
+      color: #FAF6F0;
+    }
+
+    /* ---------------- COMPACT & SCROLLABLE MODAL ---------------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(14px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: #181512;
+      border: 1px solid rgba(244, 236, 228, 0.14);
+      border-radius: 22px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      transform: translateY(20px) scale(0.97);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .modal-box::-webkit-scrollbar {
+      width: 5px;
+    }
+    .modal-box::-webkit-scrollbar-thumb {
+      background: rgba(244, 236, 228, 0.2);
+      border-radius: 999px;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(18, 16, 14, 0.85);
+      border: 1px solid rgba(244, 236, 228, 0.18);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .modal-close:hover {
+      background: var(--accent-terracotta);
+    }
+
+    .modal-img {
+      height: 140px;
+      width: 100%;
+      background: #0E0C0B;
+      position: relative;
+    }
+
+    .modal-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-content {
+      padding: 18px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-content h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .modal-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .modal-specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 4px 0;
+    }
+
+    .m-spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(244, 236, 228, 0.04);
+      padding-bottom: 5px;
+    }
+
+    .m-spec-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .m-spec-row span { color: var(--text-muted); }
+    .m-spec-row strong { color: #FAF6F0; }
+
+    .modal-actions {
+      margin-top: 4px;
+    }
+
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 999px;
+      background: var(--accent-terracotta);
+      color: #FAF6F0;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      background: var(--accent-terracotta-hover);
+    }
+
+    @media (max-width: 992px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; gap: 16px; }
+      .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+      }
+      .modal-box {
+        border-radius: 24px 24px 0 0;
+        max-height: 85vh;
+        overflow-y: auto;
+        transform: translateY(100%);
+      }
+      .modal-overlay.active .modal-box {
+        transform: translateY(0);
+      }
+      .modal-img { height: 130px; }
+      .modal-content { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html#categories" class="logo-brand">
+          <div class="logo-img-wrap"><img src="Logo - HBX Food.jpeg" alt="HBX Foods" /></div>
+          <div class="logo-text"><h1>HBX Foods</h1></div>
+        </a>
+        <a href="index.html#categories" class="back-btn">← Back to Categories</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Export Division 03</span>
+      <h2>Sortex Clean Seeds & Supergrains</h2>
+      <p>Cleaned through dual optical Sortex machines for uniform size and maximum purity up to 99.95%. Ideal for commercial bakeries, confectionery, and gourmet oil pressing.</p>
+    </div>
+  </section>
+
+  <!-- ================= ULTRA-CLEAN VISUAL GRID ================= -->
+  <div class="container">
+    <div class="products-grid">
+
+      <!-- 1. Hulled Sesame -->
+      <div class="clean-p-card" onclick="openModal('hulled-sesame')">
+        <div class="c-img-wrap">
+          <img src="hulled-sesame-seeds.jpg" alt="Hulled Sesame Seeds" />
+          <span class="c-tag">99.95% Purity</span>
+        </div>
+        <div class="c-body">
+          <h3>Hulled Sesame Seeds</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 2. Natural White Sesame -->
+      <div class="clean-p-card" onclick="openModal('natural-sesame')">
+        <div class="c-img-wrap">
+          <img src="natural-sesame-seeds.jpg" alt="Natural Sesame Seeds" />
+          <span class="c-tag">Natural Crunch</span>
+        </div>
+        <div class="c-body">
+          <h3>Natural Sesame Seeds</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 3. Cumin Seeds -->
+      <div class="clean-p-card" onclick="openModal('cumin-seeds')">
+        <div class="c-img-wrap">
+          <img src="cumin-seeds-jeera.jpg" alt="Cumin Seeds" />
+          <span class="c-tag">Bold Jeera</span>
+        </div>
+        <div class="c-body">
+          <h3>Cumin Seeds (Jeera)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 4. Black Cumin (Kalonji) -->
+      <div class="clean-p-card" onclick="openModal('kalonji')">
+        <div class="c-img-wrap">
+          <img src="kalonji-black-cumin.jpg" alt="Black Cumin Kalonji" />
+          <span class="c-tag">Kalonji</span>
+        </div>
+        <div class="c-body">
+          <h3>Black Cumin (Kalonji)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 5. Chia Seeds -->
+      <div class="clean-p-card" onclick="openModal('chia-seeds')">
+        <div class="c-img-wrap">
+          <img src="chia-seeds-sortex.jpg" alt="Sortex Chia Seeds" />
+          <span class="c-tag">Superfood</span>
+        </div>
+        <div class="c-body">
+          <h3>Sortex Chia Seeds</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 6. Flax Seeds -->
+      <div class="clean-p-card" onclick="openModal('flax-seeds')">
+        <div class="c-img-wrap">
+          <img src="flax-seeds-wide.jpg" alt="Golden Flax Seeds" />
+          <span class="c-tag">High Omega-3</span>
+        </div>
+        <div class="c-body">
+          <h3>Golden & Brown Flax Seeds</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 7. Fennel Seeds (Saunf) -->
+      <div class="clean-p-card" onclick="openModal('fennel-seeds')">
+        <div class="c-img-wrap">
+          <img src="natural-sesame-seeds.jpg" alt="Fennel Seeds" />
+          <span class="c-tag">Sweet & Aromatic</span>
+        </div>
+        <div class="c-body">
+          <h3>Fennel Seeds (Saunf)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 8. Quinoa Seeds -->
+      <div class="clean-p-card" onclick="openModal('quinoa-seeds')">
+        <div class="c-img-wrap">
+          <img src="chia-seeds-sortex.jpg" alt="Quinoa Seeds" />
+          <span class="c-tag">Supergrain</span>
+        </div>
+        <div class="c-body">
+          <h3>Quinoa Seeds (White & Tri-Color)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 9. Fenugreek Seeds (Methi Dana) -->
+      <div class="clean-p-card" onclick="openModal('fenugreek-seeds')">
+        <div class="c-img-wrap">
+          <img src="cumin-seeds-jeera.jpg" alt="Fenugreek Seeds" />
+          <span class="c-tag">Aromatic Bitter</span>
+        </div>
+        <div class="c-body">
+          <h3>Fenugreek Seeds (Methi Dana)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 10. Ajwain Seeds (Carom) -->
+      <div class="clean-p-card" onclick="openModal('ajwain-seeds')">
+        <div class="c-img-wrap">
+          <img src="cumin-seeds-jeera.jpg" alt="Ajwain Seeds" />
+          <span class="c-tag">High Thymol</span>
+        </div>
+        <div class="c-body">
+          <h3>Ajwain Seeds (Carom)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 11. Black Sesame Seeds -->
+      <div class="clean-p-card" onclick="openModal('black-sesame')">
+        <div class="c-img-wrap">
+          <img src="kalonji-black-cumin.jpg" alt="Black Sesame Seeds" />
+          <span class="c-tag">Bold Black</span>
+        </div>
+        <div class="c-body">
+          <h3>Black Sesame Seeds</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 12. Basil Seeds (Tukmaria / Sabja) -->
+      <div class="clean-p-card" onclick="openModal('basil-seeds')">
+        <div class="c-img-wrap">
+          <img src="chia-seeds-sortex.jpg" alt="Basil Seeds Tukmaria" />
+          <span class="c-tag">High Swelling</span>
+        </div>
+        <div class="c-body">
+          <h3>Basil Seeds (Tukmaria / Sabja)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 13. Yellow Mustard Seeds (Bold / Micro) -->
+      <div class="clean-p-card" onclick="openModal('yellow-mustard')">
+        <div class="c-img-wrap">
+          <img src="natural-sesame-seeds.jpg" alt="Yellow Mustard Seeds" />
+          <span class="c-tag">Bold & Micro</span>
+        </div>
+        <div class="c-body">
+          <h3>Yellow Mustard Seeds (Bold/Micro)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 14. Dill Seeds (Suva) -->
+      <div class="clean-p-card" onclick="openModal('dill-seeds')">
+        <div class="c-img-wrap">
+          <img src="cumin-seeds-jeera.jpg" alt="Dill Seeds" />
+          <span class="c-tag">Warm Anethole</span>
+        </div>
+        <div class="c-body">
+          <h3>Dill Seeds (Suva)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 15. Cress Seeds (Halim / Asaliya) -->
+      <div class="clean-p-card" onclick="openModal('cress-seeds')">
+        <div class="c-img-wrap">
+          <img src="flax-seeds-wide.jpg" alt="Cress Seeds" />
+          <span class="c-tag">Iron Rich Superseed</span>
+        </div>
+        <div class="c-body">
+          <h3>Cress Seeds (Halim / Asaliya)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 16. Black Brown Mustard (Rai) -->
+      <div class="clean-p-card" onclick="openModal('black-mustard')">
+        <div class="c-img-wrap">
+          <img src="kalonji-black-cumin.jpg" alt="Black Brown Mustard Seeds" />
+          <span class="c-tag">Pungent Rai</span>
+        </div>
+        <div class="c-body">
+          <h3>Black Brown Mustard (Rai)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= FLOATING DETAIL MODAL / SHEET ================= -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-close" onclick="closeModalDirect()">✕</div>
+      <div class="modal-img">
+        <img id="modalImg" src="" alt="Product Detail" />
+      </div>
+      <div class="modal-content">
+        <h3 id="modalTitle">Product Name</h3>
+        <p id="modalDesc">Product description will appear here.</p>
+        
+        <div class="modal-specs-list" id="modalSpecs">
+          <!-- Dynamic specs injected -->
+        </div>
+
+        <div class="modal-actions">
+          <a id="modalWhatsapp" href="#" target="_blank" class="whatsapp-btn">
+            Inquire This Item on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    const productData = {
+      'hulled-sesame': {
+        title: 'Hulled Sesame Seeds',
+        desc: 'Pure white appearance, smooth nutty flavor. 99.95% purity grade preferred by top international bakeries, tahini makers, and burger bun producers.',
+        img: 'hulled-sesame-seeds.jpg',
+        specs: {
+          'Purity Standard': '99.95% Dual Optical Sortex Cleaned',
+          'Natural Oil Content': 'Min 48% - 50% Natural Oil',
+          'Packaging': '25kg / 50kg Multi-ply Paper or PP Bags',
+          'Minimum Order (MOQ)': '20 Tons FCL Container'
+        }
+      },
+      'natural-sesame': {
+        title: 'Natural White Sesame Seeds',
+        desc: 'Un-hulled natural white seeds with high calcium and essential fatty acids. Retains signature delicate crunch and oil rich taste.',
+        img: 'natural-sesame-seeds.jpg',
+        specs: {
+          'Purity Grade': '99.0% / 99.5% Machine Cleaned',
+          'Moisture Content': 'Under 5.0% Max',
+          'Packaging': '25kg / 50kg PP Bags with Liner',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'cumin-seeds': {
+        title: 'Cumin Seeds (Jeera)',
+        desc: 'Sourced from Unjha and Rajasthan mandis. Naturally aromatic, machine cleaned, and free from stem dust. High essential oil profile.',
+        img: 'cumin-seeds-jeera.jpg',
+        specs: {
+          'Cleaning Grade': '99.0% / 99.5% Machine & Sortex Cleaned',
+          'Volatile Oil': 'Volatile Oil > 2.5% Certified',
+          'Packaging': '25kg / 50kg PP Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'kalonji': {
+        title: 'Black Cumin (Kalonji)',
+        desc: 'Deep black triangular seeds with sharp peppery pungent flavor. Highly valued for traditional breads, pickles, and herbal applications.',
+        img: 'kalonji-black-cumin.jpg',
+        specs: {
+          'Grain Quality': 'Nigella Sativa (Uniform Pure Black Grain)',
+          'Purity Standard': '99% Machine Cleaned Purity',
+          'Packaging': '25kg / 50kg Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'chia-seeds': {
+        title: 'Sortex Clean Chia Seeds',
+        desc: 'Black and mottled grey seeds Sortex-cleaned for exceptional cleanliness. Rich in dietary fiber, protein, and omega-3 alpha-linolenic acid.',
+        img: 'chia-seeds-sortex.jpg',
+        specs: {
+          'Purity Grade': '99.9% Food Grade Optical Sortex',
+          'Nutritional': 'High Dietary Fiber & Omega-3 ALA',
+          'Packaging': '25kg Poly Bags with Inner Liner',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'flax-seeds': {
+        title: 'Golden & Brown Flax Seeds',
+        desc: 'Expertly Sortex-cleaned seeds with glossy finish and mild nutty flavor. Popular for health cereals, granola bars, and baking.',
+        img: 'flax-seeds-wide.jpg',
+        specs: {
+          'Purity Standard': '99.5% Double Cleaned Purity',
+          'Form': 'Whole Golden / Brown Glossy Seeds',
+          'Packaging': '25kg / 50kg Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'fennel-seeds': {
+        title: 'Fennel Seeds (Saunf)',
+        desc: 'Carefully selected for superior quality, our Fennel Seeds deliver a delicate sweetness, fresh aroma, and consistent performance for food processing, baking, herbal infusions, and traditional recipes.',
+        img: 'natural-sesame-seeds.jpg',
+        specs: {
+          'Quality Grade': '99.0% / 99.5% Sortex Cleaned (Bold Green)',
+          'Volatile Oil': 'Min 1.5% Natural Essential Oil Content',
+          'Packaging': '25kg / 50kg PP Bags / Jute Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'quinoa-seeds': {
+        title: 'Quinoa Seeds (White & Tri-Color)',
+        desc: 'A wholesome supergrain prized for its nutrition and versatility. Our premium Quinoa Seeds offer exceptional purity, a mild nutty flavor, and consistent quality, making them ideal for salads, cereals, bakery, snacks, and health food applications.',
+        img: 'chia-seeds-sortex.jpg',
+        specs: {
+          'Purity Standard': '99.9% Machine Cleaned & De-saponified',
+          'Nutritional': 'Gluten-Free Complete Plant Protein',
+          'Packaging': '25kg Multi-layer Paper Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'fenugreek-seeds': {
+        title: 'Fenugreek Seeds (Methi Dana)',
+        desc: 'Distinctively aromatic with a rich, slightly bitter flavor, our premium Fenugreek Seeds offer exceptional purity and consistent quality, making them ideal for spice blends, pickles, curries, seasonings, and traditional recipes.',
+        img: 'cumin-seeds-jeera.jpg',
+        specs: {
+          'Purity Grade': '99.0% Machine Cleaned / Sortex Optical',
+          'Moisture': 'Under 10% Max Safe Export Moisture',
+          'Packaging': '25kg / 50kg PP Bags with Liner',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'ajwain-seeds': {
+        title: 'Ajwain Seeds (Carom Seeds)',
+        desc: 'Strongly aromatic and naturally flavorful, our premium Ajwain Seeds deliver exceptional purity and a bold, thyme-like taste, making them ideal for spice blends, bakery products, snacks, pickles, and traditional recipes.',
+        img: 'cumin-seeds-jeera.jpg',
+        specs: {
+          'Aroma & Active Compound': 'High Active Thymol (Distinct Thyme Punch)',
+          'Purity Standard': '99% Sortex Double Cleaned',
+          'Packaging': '25kg / 50kg Poly-woven Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'black-sesame': {
+        title: 'Black Sesame Seeds',
+        desc: 'Rich in flavor and naturally aromatic, our premium Black Sesame Seeds offer exceptional purity, a distinctive nutty taste, and consistent quality, making them ideal for bakery, confectionery, seasonings, Asian cuisine, and gourmet applications.',
+        img: 'kalonji-black-cumin.jpg',
+        specs: {
+          'Color & Uniformity': '100% Jet Black Uniform Color Grade',
+          'Purity Standard': '99.9% Optical Dual-Camera Sortex',
+          'Packaging': '25kg Vacuum or Multi-ply Paper Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'basil-seeds': {
+        title: 'Basil Seeds (Tukmaria / Sabja)',
+        desc: 'Naturally refreshing and carefully selected, our premium Double Basil Seeds (Tukmaria) offer exceptional purity, superior swelling capacity, and consistent quality, making them ideal for beverages, desserts, health foods, and culinary applications.',
+        img: 'chia-seeds-sortex.jpg',
+        specs: {
+          'Swelling Ratio': 'Min 1:30 Hydrophilic Expansion Ratio',
+          'Purity Standard': '99.5% Micro-Sieved Purity',
+          'Packaging': '25kg Poly Bags with Moisture Barrier',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'yellow-mustard': {
+        title: 'Yellow Mustard Seeds (Bold / Micro)',
+        desc: 'Mild, aromatic, and naturally flavorful, our premium Yellow Mustard Seeds offer exceptional purity and consistent quality, making them ideal for seasonings, pickles, sauces, spice blends, and food processing applications.',
+        img: 'natural-sesame-seeds.jpg',
+        specs: {
+          'Grade Options': 'Bold Grain & Micro Grain Available',
+          'Purity Standard': '99.5% Machine Cleaned Sortex',
+          'Packaging': '25kg / 50kg PP Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'dill-seeds': {
+        title: 'Dill Seeds (Suva)',
+        desc: 'Delicately aromatic and naturally flavorful, our premium Dill Seeds offer exceptional purity and a warm, slightly sweet taste, making them ideal for pickles, spice blends, seasonings, bakery products, and culinary applications.',
+        img: 'cumin-seeds-jeera.jpg',
+        specs: {
+          'Aroma Profile': 'Warm Anethole & Carvone Essential Notes',
+          'Purity Standard': '99% Sortex Cleaned & Graded',
+          'Packaging': '25kg / 50kg Poly Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'cress-seeds': {
+        title: 'Cress Seeds (Halim / Asaliya)',
+        desc: 'Small in size yet rich in natural goodness, our premium Cress Seeds offer exceptional purity, a mild peppery flavor, and consistent quality, making them ideal for health foods, beverages, bakery, and culinary applications.',
+        img: 'flax-seeds-wide.jpg',
+        specs: {
+          'Nutritional Profile': 'Dense Plant Iron, Folate & Dietary Fiber',
+          'Purity Standard': '99% Precision Air-screen Cleaned',
+          'Packaging': '25kg Multi-wall Paper Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'black-mustard': {
+        title: 'Black Brown Mustard Seeds (Rai)',
+        desc: 'Bold, pungent, and naturally aromatic, our premium Black Brown Mustard Seeds offer exceptional purity and consistent quality, making them ideal for spice blends, pickles, seasonings, sauces, and traditional culinary applications.',
+        img: 'kalonji-black-cumin.jpg',
+        specs: {
+          'Pungency & Volatile Oil': 'High Sinigrin Glucosinolate Pungency',
+          'Purity Standard': '99.5% Double Cleaned Machine Purity',
+          'Packaging': '25kg / 50kg PP Bags with Liner',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      }
+    };
+
+    function openModal(id) {
+      const data = productData[id];
+      if (!data) return;
+
+      document.getElementById('modalTitle').innerText = data.title;
+      document.getElementById('modalDesc').innerText = data.desc;
+      document.getElementById('modalImg').src = data.img;
+      
+      let specsHtml = '';
+      for (const [key, val] of Object.entries(data.specs)) {
+        const isMoq = key.toLowerCase().includes('moq') || key.toLowerCase().includes('minimum');
+        const valStyle = isMoq ? 'style="color: #E28873;"' : '';
+        specsHtml += `<div class="m-spec-row"><span>${key}</span><strong ${valStyle}>${val}</strong></div>`;
+      }
+      document.getElementById('modalSpecs').innerHTML = specsHtml;
+
+      document.getElementById('modalWhatsapp').href = `https://wa.me/919056003331?text=Hello%20HBX%20Foods,%20I%20am%20interested%20in%20ordering%20${encodeURIComponent(data.title)}.%20Please%20share%20FOB/CIF%20quote.`;
+
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'modalOverlay') {
+        closeModalDirect();
+      }
+    }
+
+    function closeModalDirect() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dehydrated Ingredients | HBX Foods Export</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #12100E;
+      --bg-card: #181512;
+      --accent-terracotta: #8E3B29;
+      --accent-terracotta-hover: #752E1E;
+      --text-main: #FAF6F0;
+      --text-muted: #A39B92;
+      --border-subtle: rgba(244, 236, 228, 0.08);
+      --border-accent: rgba(142, 59, 41, 0.35);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
+    header {
+      height: 64px;
+      background: rgba(18, 16, 14, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: fixed;
+      top: 0; left: 0; width: 100%; z-index: 99;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .logo-brand { display: flex; align-items: center; gap: 12px; }
+    .logo-img-wrap { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: #FFF; display: flex; align-items: center; justify-content: center; }
+    .logo-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .logo-text h1 { font-family: var(--font-serif); font-size: 19px; letter-spacing: 1.5px; text-transform: uppercase; }
+    .back-btn { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .back-btn:hover { color: #FAF6F0; }
+
+    /* Page Hero */
+    .page-hero { padding: 100px 0 30px; border-bottom: 1px solid var(--border-subtle); }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 10.5px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; background: rgba(142, 59, 41, 0.15); color: #E28873; border: 1px solid rgba(142, 59, 41, 0.3); margin-bottom: 8px; }
+    .page-hero h2 { font-family: var(--font-serif); font-size: clamp(30px, 3.5vw, 44px); font-weight: 500; }
+    .page-hero p { color: var(--text-muted); font-size: 14px; max-width: 580px; margin-top: 4px; }
+
+    /* ---------------- CLEAN VISUAL GRID (Photo + Name + Button Only) ---------------- */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 40px 0 80px;
+    }
+
+    .clean-p-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 22px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s ease;
+    }
+
+    .clean-p-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+    }
+
+    .c-img-wrap {
+      height: 220px;
+      width: 100%;
+      background: #0E0C0B;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .c-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .clean-p-card:hover .c-img-wrap img {
+      transform: scale(1.06);
+    }
+
+    .c-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(18, 16, 14, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(244, 236, 228, 0.1);
+      color: #FAF6F0;
+    }
+
+    .c-body {
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      min-height: 74px; /* Perfectly symmetrical height across all cards */
+    }
+
+    .c-body h3 {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .c-btn {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #E28873;
+      background: rgba(142, 59, 41, 0.12);
+      border: 1px solid rgba(142, 59, 41, 0.25);
+      padding: 6px 13px;
+      border-radius: 999px;
+      white-space: nowrap; /* Arrow hamesha ek hi line me rahega */
+      flex-shrink: 0;      /* Button kabhi squish nahi hoga */
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.25s ease;
+    }
+
+    .clean-p-card:hover .c-btn {
+      background: var(--accent-terracotta);
+      color: #FAF6F0;
+    }
+
+    /* ---------------- COMPACT & SCROLLABLE MODAL ---------------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(14px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+      overflow-y: auto; /* Screen choti ho toh scroll enable */
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: #181512;
+      border: 1px solid rgba(244, 236, 228, 0.14);
+      border-radius: 22px;
+      width: 100%;
+      max-width: 480px; /* 650px se ghata kar compact 480px kiya */
+      max-height: 90vh; /* Screen se bahar kabhi nahi jayega */
+      overflow-y: auto; /* Andar smooth scrolling ENABLED */
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      transform: translateY(20px) scale(0.97);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    /* Sleek Custom Scrollbar */
+    .modal-box::-webkit-scrollbar {
+      width: 5px;
+    }
+    .modal-box::-webkit-scrollbar-thumb {
+      background: rgba(244, 236, 228, 0.2);
+      border-radius: 999px;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(18, 16, 14, 0.85);
+      border: 1px solid rgba(244, 236, 228, 0.18);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .modal-close:hover {
+      background: var(--accent-terracotta);
+    }
+
+    /* Compact Photo Height (250px se ghata kar 140px kiya) */
+    .modal-img {
+      height: 140px;
+      width: 100%;
+      background: #0E0C0B;
+      position: relative;
+    }
+
+    .modal-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Tight, Luxury Padding */
+    .modal-content {
+      padding: 18px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-content h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .modal-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .modal-specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 4px 0;
+    }
+
+    .m-spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(244, 236, 228, 0.04);
+      padding-bottom: 5px;
+    }
+
+    .m-spec-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .m-spec-row span { color: var(--text-muted); }
+    .m-spec-row strong { color: #FAF6F0; }
+
+    .modal-actions {
+      margin-top: 4px;
+    }
+
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 999px;
+      background: var(--accent-terracotta);
+      color: #FAF6F0;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      background: var(--accent-terracotta-hover);
+    }
+
+    /* ---------------- MOBILE RESPONSIVENESS (Apple Bottom-Sheet) ---------------- */
+    @media (max-width: 992px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; gap: 16px; }
+      .modal-overlay {
+        padding: 0;
+        align-items: flex-end; /* Mobile par screen ke bottom se slide hoga */
+      }
+      .modal-box {
+        border-radius: 28px 28px 0 0;
+        max-height: 85vh;
+        overflow-y: auto;
+        transform: translateY(100%);
+      }
+      .modal-overlay.active .modal-box {
+        transform: translateY(0);
+      }
+      .modal-img { height: 200px; }
+      .modal-content { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html#categories" class="logo-brand">
+          <div class="logo-img-wrap"><img src="Logo - HBX Food.jpeg" alt="HBX Foods" /></div>
+          <div class="logo-text"><h1>HBX Foods</h1></div>
+        </a>
+        <a href="index.html#categories" class="back-btn">← Back to Categories</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Export Division 01</span>
+      <h2>Dehydrated Ingredients</h2>
+      <p>Select any item to view specifications, available mesh cuts, and instant export quotation.</p>
+    </div>
+  </section>
+
+  <!-- ================= ULTRA-CLEAN VISUAL GRID ================= -->
+  <div class="container">
+    <div class="products-grid">
+
+      <!-- 1. White Onion -->
+      <div class="clean-p-card" onclick="openModal('white-onion')">
+        <div class="c-img-wrap">
+          <img src="Gemini_Generated_Image_1a9yqu1a9yqu1a9y.png" alt="Dehydrated White Onion" />
+          <span class="c-tag">White Onion</span>
+        </div>
+        <div class="c-body">
+          <h3>Dehydrated White Onion</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 2. Pink Onion -->
+      <div class="clean-p-card" onclick="openModal('pink-onion')">
+        <div class="c-img-wrap">
+          <img src="Gemini_Generated_Image_r95klkr95klkr95k.png" alt="Dehydrated Pink Onion" />
+          <span class="c-tag">Pink Onion</span>
+        </div>
+        <div class="c-body">
+          <h3>Dehydrated Pink Onion</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 3. Red Onion -->
+      <div class="clean-p-card" onclick="openModal('red-onion')">
+        <div class="c-img-wrap">
+          <img src="dehydrated-red-onion.jpg" alt="Dehydrated Red Onion" />
+          <span class="c-tag">Red Onion</span>
+        </div>
+        <div class="c-body">
+          <h3>Dehydrated Red Onion</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 4. Garlic Flakes -->
+      <div class="clean-p-card" onclick="openModal('garlic-flakes')">
+        <div class="c-img-wrap">
+          <img src="Gemini_Generated_Image_dwf1sgdwf1sgdwf1.png" alt="Dehydrated Garlic Flakes" />
+          <span class="c-tag">Garlic</span>
+        </div>
+        <div class="c-body">
+          <h3>Garlic Flakes (Sliced)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 5. Garlic Minced & Granules -->
+      <div class="clean-p-card" onclick="openModal('garlic-minced')">
+        <div class="c-img-wrap">
+          <img src="dehydrated-garlic-minced.jpg" alt="Garlic Minced & Granules" />
+          <span class="c-tag">Garlic</span>
+        </div>
+        <div class="c-body">
+          <h3>Garlic Minced & Granules</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 6. Garlic Powder -->
+      <div class="clean-p-card" onclick="openModal('garlic-powder')">
+        <div class="c-img-wrap">
+          <img src="dehydrated-garlic-powder.jpg" alt="Dehydrated Garlic Powder" />
+          <span class="c-tag">Garlic</span>
+        </div>
+        <div class="c-body">
+          <h3>Dehydrated Garlic Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 7. Kasuri Methi Leaves -->
+      <div class="clean-p-card" onclick="openModal('kasuri-methi-leaves')">
+        <div class="c-img-wrap">
+          <img src="Gemini_Generated_Image_1a9yqu1a9yqu1a9y.png" alt="Nagauri Kasuri Methi Leaves" />
+          <span class="c-tag">Nagaur Sun-Dried</span>
+        </div>
+        <div class="c-body">
+          <h3>Nagauri Kasuri Methi (Leaves)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 8. Dehydrated Ginger Flakes -->
+      <div class="clean-p-card" onclick="openModal('ginger-flakes')">
+        <div class="c-img-wrap">
+          <img src="Gemini_Generated_Image_dwf1sgdwf1sgdwf1.png" alt="Dehydrated Ginger Flakes" />
+          <span class="c-tag">Sun-Dried</span>
+        </div>
+        <div class="c-body">
+          <h3>Dehydrated Ginger Flakes</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 9. Dehydrated Green Chilli Flakes -->
+      <div class="clean-p-card" onclick="openModal('green-chilli-flakes')">
+        <div class="c-img-wrap">
+          <img src="Gemini_Generated_Image_1a9yqu1a9yqu1a9y.png" alt="Dehydrated Green Chilli Flakes" />
+          <span class="c-tag">Fiery Green</span>
+        </div>
+        <div class="c-body">
+          <h3>Dehydrated Green Chilli Flakes</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 10. Pure White Onion Powder -->
+      <div class="clean-p-card" onclick="openModal('white-onion-powder')">
+        <div class="c-img-wrap">
+          <img src="Gemini_Generated_Image_1a9yqu1a9yqu1a9y.png" alt="Dehydrated White Onion Powder" />
+          <span class="c-tag">Ultra Fine</span>
+        </div>
+        <div class="c-body">
+          <h3>Dehydrated White Onion Powder</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= FLOATING DETAIL MODAL / SHEET ================= -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-close" onclick="closeModalDirect()">✕</div>
+      <div class="modal-img">
+        <img id="modalImg" src="" alt="Product Detail" />
+      </div>
+      <div class="modal-content">
+        <h3 id="modalTitle">Product Name</h3>
+        <p id="modalDesc">Product description will appear here.</p>
+        
+        <div class="modal-specs-list">
+          <div class="m-spec-row"><span>Available Cuts</span><strong id="modalCuts">Flakes, Minced, Powder</strong></div>
+          <div class="m-spec-row"><span>Moisture Content</span><strong>Under 6.0% Max</strong></div>
+          <div class="m-spec-row"><span>Packaging</span><strong>20kg / 25kg Poly Bags with Inner Liner</strong></div>
+          <div class="m-spec-row"><span>Minimum Order (MOQ)</span><strong style="color: #E28873;">20 LCL / 20 Ton Container</strong></div>
+        </div>
+
+        <div class="modal-actions">
+          <a id="modalWhatsapp" href="#" target="_blank" class="whatsapp-btn">
+            Inquire This Item on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    const productData = {
+      'white-onion': {
+        title: 'Dehydrated White Onion',
+        desc: 'Processed from high-solid premium white onions. Clean, pungent, and sweet aroma with uniform particle sizing.',
+        cuts: 'Flakes, Chopped, Minced, Granules, 100-Mesh Powder',
+        img: 'Gemini_Generated_Image_1a9yqu1a9yqu1a9y.png'
+      },
+      'pink-onion': {
+        title: 'Dehydrated Pink Onion',
+        desc: 'Natural pinkish hue with mild sweetness. Highly demanded across Europe for ready-to-eat seasonings and soup bases.',
+        cuts: 'Flakes, Minced, Chopped, Powder',
+        img: 'Gemini_Generated_Image_r95klkr95klkr95k.png'
+      },
+      'red-onion': {
+        title: 'Dehydrated Red Onion',
+        desc: 'Intense pungency and deep red color. Perfect for meat seasonings, barbecue rubs, and high-flavor industrial mixes.',
+        cuts: 'Flakes, Minced, Granules, Powder',
+        img: 'dehydrated-red-onion.jpg'
+      },
+      'garlic-flakes': {
+        title: 'Dehydrated Garlic Flakes',
+        desc: '100% peeled whole garlic cloves sliced into thin crisp flakes. Retains natural allicin pungency and aroma.',
+        cuts: 'Sliced Flakes (Whole form)',
+        img: 'Gemini_Generated_Image_dwf1sgdwf1sgdwf1.png'
+      },
+      'garlic-minced': {
+        title: 'Garlic Minced & Granules',
+        desc: 'Uniform mesh cuts for industrial seasonings, coatings, and ready meals. Instant aroma release upon rehydration.',
+        cuts: 'Minced (1-3mm), Granules (40-60 Mesh)',
+        img: 'dehydrated-garlic-minced.jpg'
+      },
+      'garlic-powder': {
+        title: 'Dehydrated Garlic Powder',
+        desc: '100-mesh ultra-fine, free-flowing garlic powder. Seamlessly blends into sauces, curries, and snack food seasonings.',
+        cuts: 'Fine Powder (100 Mesh Free Flowing)',
+        img: 'dehydrated-garlic-powder.jpg'
+      },
+      'kasuri-methi-leaves': {
+        title: 'Nagauri Kasuri Methi (Leaves)',
+        desc: 'Selected broad, deep-green fenugreek leaves sun-dried in the arid breeze of Nagaur. High aroma and sweetness without bitter stalk stems.',
+        cuts: 'Whole Sun-Cured Leaves, Crushed Kibbled',
+        img: 'Gemini_Generated_Image_1a9yqu1a9yqu1a9y.png'
+      },
+      'ginger-flakes': {
+        title: 'Dehydrated Ginger Flakes',
+        desc: 'Sun-dried high-potency peeled ginger root slices. Crisp texture with sharp gingerol pungency, ideal for extraction and tea blending.',
+        cuts: 'Sliced Flakes, Minced (2-4mm), Granules',
+        img: 'Gemini_Generated_Image_dwf1sgdwf1sgdwf1.png'
+      },
+      'green-chilli-flakes': {
+        title: 'Dehydrated Green Chilli Flakes',
+        desc: 'Retains vivid green chlorophyll color and high capsaicin kick. Perfect for instant noodle seasoning packets, pizzas, and dry rubs.',
+        cuts: 'Flakes (3-5mm), Coarse Kibbled, Powder',
+        img: 'Gemini_Generated_Image_1a9yqu1a9yqu1a9y.png'
+      },
+      'white-onion-powder': {
+        title: 'Dehydrated White Onion Powder',
+        desc: 'Milled from prime dehydrated white onion flakes. High pungency, free-flowing powder with instant sweet onion flavor release.',
+        cuts: '100-Mesh Fine Powder, Micro-Pulverized',
+        img: 'Gemini_Generated_Image_1a9yqu1a9yqu1a9y.png'
+      }
+    };
+
+    function openModal(id) {
+      const data = productData[id];
+      if (!data) return;
+
+      document.getElementById('modalTitle').innerText = data.title;
+      document.getElementById('modalDesc').innerText = data.desc;
+      document.getElementById('modalCuts').innerText = data.cuts;
+      document.getElementById('modalImg').src = data.img;
+      document.getElementById('modalWhatsapp').href = `https://wa.me/919056003331?text=Hello%20HBX%20Foods,%20I%20am%20interested%20in%20ordering%20${encodeURIComponent(data.title)}.%20Please%20share%20FOB/CIF%20quote.`;
+
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'modalOverlay') {
+        closeModalDirect();
+      }
+    }
+
+    function closeModalDirect() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+
+</body>
+</html>

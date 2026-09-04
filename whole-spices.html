@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whole & Exotic Spices | HBX Foods Export</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #12100E;
+      --bg-card: #181512;
+      --accent-terracotta: #8E3B29;
+      --accent-terracotta-hover: #752E1E;
+      --text-main: #FAF6F0;
+      --text-muted: #A39B92;
+      --border-subtle: rgba(244, 236, 228, 0.08);
+      --border-accent: rgba(142, 59, 41, 0.35);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
+    header {
+      height: 64px;
+      background: rgba(18, 16, 14, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: fixed;
+      top: 0; left: 0; width: 100%; z-index: 99;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .logo-brand { display: flex; align-items: center; gap: 12px; }
+    .logo-img-wrap { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: #FFF; display: flex; align-items: center; justify-content: center; }
+    .logo-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .logo-text h1 { font-family: var(--font-serif); font-size: 19px; letter-spacing: 1.5px; text-transform: uppercase; }
+    .back-btn { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .back-btn:hover { color: #FAF6F0; }
+
+    /* Page Hero */
+    .page-hero { padding: 100px 0 30px; border-bottom: 1px solid var(--border-subtle); }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 10.5px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; background: rgba(142, 59, 41, 0.15); color: #E28873; border: 1px solid rgba(142, 59, 41, 0.3); margin-bottom: 8px; }
+    .page-hero h2 { font-family: var(--font-serif); font-size: clamp(30px, 3.5vw, 44px); font-weight: 500; }
+    .page-hero p { color: var(--text-muted); font-size: 14px; max-width: 580px; margin-top: 4px; }
+
+    /* ---------------- CLEAN VISUAL GRID ---------------- */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 40px 0 80px;
+    }
+
+    .clean-p-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 22px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s ease;
+    }
+
+    .clean-p-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+    }
+
+    .c-img-wrap {
+      height: 220px;
+      width: 100%;
+      background: #0E0C0B;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .c-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .clean-p-card:hover .c-img-wrap img {
+      transform: scale(1.06);
+    }
+
+    .c-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(18, 16, 14, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(244, 236, 228, 0.1);
+      color: #FAF6F0;
+    }
+
+    .c-body {
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      min-height: 74px;
+    }
+
+    .c-body h3 {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .c-btn {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #E28873;
+      background: rgba(142, 59, 41, 0.12);
+      border: 1px solid rgba(142, 59, 41, 0.25);
+      padding: 6px 13px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.25s ease;
+    }
+
+    .clean-p-card:hover .c-btn {
+      background: var(--accent-terracotta);
+      color: #FAF6F0;
+    }
+
+    /* ---------------- COMPACT & SCROLLABLE MODAL ---------------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(14px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: #181512;
+      border: 1px solid rgba(244, 236, 228, 0.14);
+      border-radius: 22px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      transform: translateY(20px) scale(0.97);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .modal-box::-webkit-scrollbar {
+      width: 5px;
+    }
+    .modal-box::-webkit-scrollbar-thumb {
+      background: rgba(244, 236, 228, 0.2);
+      border-radius: 999px;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(18, 16, 14, 0.85);
+      border: 1px solid rgba(244, 236, 228, 0.18);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .modal-close:hover {
+      background: var(--accent-terracotta);
+    }
+
+    .modal-img {
+      height: 140px;
+      width: 100%;
+      background: #0E0C0B;
+      position: relative;
+    }
+
+    .modal-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-content {
+      padding: 18px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-content h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .modal-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .modal-specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 4px 0;
+    }
+
+    .m-spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(244, 236, 228, 0.04);
+      padding-bottom: 5px;
+    }
+
+    .m-spec-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .m-spec-row span { color: var(--text-muted); }
+    .m-spec-row strong { color: #FAF6F0; }
+
+    .modal-actions {
+      margin-top: 4px;
+    }
+
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 999px;
+      background: var(--accent-terracotta);
+      color: #FAF6F0;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      background: var(--accent-terracotta-hover);
+    }
+
+    @media (max-width: 992px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; gap: 16px; }
+      .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+      }
+      .modal-box {
+        border-radius: 24px 24px 0 0;
+        max-height: 85vh;
+        overflow-y: auto;
+        transform: translateY(100%);
+      }
+      .modal-overlay.active .modal-box {
+        transform: translateY(0);
+      }
+      .modal-img { height: 130px; }
+      .modal-content { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html#categories" class="logo-brand">
+          <div class="logo-img-wrap"><img src="Logo - HBX Food.jpeg" alt="HBX Foods" /></div>
+          <div class="logo-text"><h1>HBX Foods</h1></div>
+        </a>
+        <a href="index.html#categories" class="back-btn">← Back to Categories</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Export Division 02</span>
+      <h2>Whole & Exotic Spices (Sabut Masale)</h2>
+      <p>Hand-harvested whole pods, seeds, and exotic botanical stigmas. Graded for high natural essential oil content and packed with vacuum-nitrogen preservation.</p>
+    </div>
+  </section>
+
+  <!-- ================= ULTRA-CLEAN VISUAL GRID ================= -->
+  <div class="container">
+    <div class="products-grid">
+
+      <!-- 1. Kashmiri Saffron -->
+      <div class="clean-p-card" onclick="openModal('kashmir-saffron')">
+        <div class="c-img-wrap">
+          <img src="Gemini_Generated_Image_hoddjvhoddjvhodd.png" alt="Kashmiri Saffron Mongra" />
+          <span class="c-tag">Exotic A++</span>
+        </div>
+        <div class="c-body">
+          <h3>Kashmir Kesar (Saffron)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 2. Green Cardamom Bold -->
+      <div class="clean-p-card" onclick="openModal('green-cardamom')">
+        <div class="c-img-wrap">
+          <img src="green-cardamom-bold.jpg" alt="Green Cardamom Bold" />
+          <span class="c-tag">Whole Pods</span>
+        </div>
+        <div class="c-body">
+          <h3>Green Cardamom Bold</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 3. Star Anise -->
+      <div class="clean-p-card" onclick="openModal('star-anise')">
+        <div class="c-img-wrap">
+          <img src="star-anise-whole.jpg" alt="Star Anise Whole" />
+          <span class="c-tag">Whole Spice</span>
+        </div>
+        <div class="c-body">
+          <h3>Star Anise (Chakra Phool)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 4. Dry Ginger -->
+      <div class="clean-p-card" onclick="openModal('dry-ginger')">
+        <div class="c-img-wrap">
+          <img src="dry-ginger-whole.jpg" alt="Whole Dry Ginger" />
+          <span class="c-tag">Sun-Dried</span>
+        </div>
+        <div class="c-body">
+          <h3>Whole Dry Ginger (Sonth)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 5. Coriander Seeds Eagle Grade -->
+      <div class="clean-p-card" onclick="openModal('eagle-coriander')">
+        <div class="c-img-wrap">
+          <img src="eagle-coriander-seeds.jpg" alt="Whole Coriander Seeds" />
+          <span class="c-tag">Eagle Grade</span>
+        </div>
+        <div class="c-body">
+          <h3>Eagle Coriander Seeds</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 6. Whole Cinnamon Quills -->
+      <div class="clean-p-card" onclick="openModal('cinnamon-quills')">
+        <div class="c-img-wrap">
+          <img src="cinnamon-quills.jpg" alt="Cinnamon Quills" />
+          <span class="c-tag">True Quills</span>
+        </div>
+        <div class="c-body">
+          <h3>Cinnamon Quills (Dalchini)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 7. Black Pepper Bold -->
+      <div class="clean-p-card" onclick="openModal('black-pepper-bold')">
+        <div class="c-img-wrap">
+          <img src="Gemini_Generated_Image_hoddjvhoddjvhodd.png" alt="Black Pepper Bold" />
+          <span class="c-tag">Tellicherry Garbled</span>
+        </div>
+        <div class="c-body">
+          <h3>Black Pepper Bold (Kali Mirch)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 8. Whole Dry Red Chilli -->
+      <div class="clean-p-card" onclick="openModal('whole-red-chilli')">
+        <div class="c-img-wrap">
+          <img src="Gemini_Generated_Image_hoddjvhoddjvhodd.png" alt="Whole Dry Red Chilli" />
+          <span class="c-tag">S4 / Teja Stemless</span>
+        </div>
+        <div class="c-body">
+          <h3>Whole Dry Red Chilli</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 9. Handpicked Whole Cloves -->
+      <div class="clean-p-card" onclick="openModal('cloves-handpicked')">
+        <div class="c-img-wrap">
+          <img src="star-anise-whole.jpg" alt="Handpicked Whole Cloves" />
+          <span class="c-tag">High Eugenol</span>
+        </div>
+        <div class="c-body">
+          <h3>Whole Cloves (Laung)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+      <!-- 10. Indian Bay Leaves (Tejpatta) -->
+      <div class="clean-p-card" onclick="openModal('bay-leaves')">
+        <div class="c-img-wrap">
+          <img src="cinnamon-quills.jpg" alt="Indian Bay Leaves" />
+          <span class="c-tag">Aromatic Botanical</span>
+        </div>
+        <div class="c-body">
+          <h3>Indian Bay Leaves (Tejpatta)</h3>
+          <span class="c-btn">View Details →</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= FLOATING DETAIL MODAL / SHEET ================= -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-close" onclick="closeModalDirect()">✕</div>
+      <div class="modal-img">
+        <img id="modalImg" src="" alt="Product Detail" />
+      </div>
+      <div class="modal-content">
+        <h3 id="modalTitle">Product Name</h3>
+        <p id="modalDesc">Product description will appear here.</p>
+        
+        <div class="modal-specs-list" id="modalSpecs">
+          <!-- Dynamic specs injected -->
+        </div>
+
+        <div class="modal-actions">
+          <a id="modalWhatsapp" href="#" target="_blank" class="whatsapp-btn">
+            Inquire This Item on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    const productData = {
+      'kashmir-saffron': {
+        title: 'Kashmir Kesar (Saffron)',
+        desc: 'Pure Grade A++ Mongra threads. Deep scarlet stigma with extraordinary color reading (Crocin 220+) and sweet earthy aroma.',
+        img: 'Gemini_Generated_Image_hoddjvhoddjvhodd.png',
+        specs: {
+          'Origin': 'Pampore Valley, Kashmir',
+          'Grade': 'Grade A++ Pure Mongra (Crocin > 220)',
+          'Packaging': 'Vacuum Glass Jars / Nitrogen Metal Cans',
+          'Minimum Order (MOQ)': 'Negotiable LCL / Air Cargo'
+        }
+      },
+      'green-cardamom': {
+        title: 'Green Cardamom Bold (Elaichi)',
+        desc: 'Plump 8mm+ vibrant green pods handpicked from prime plantations. Packed with aromatic essential oils and jet-black seeds.',
+        img: 'green-cardamom-bold.jpg',
+        specs: {
+          'Size Grade': '8mm+ Extra Bold Green Pods',
+          'Essential Oil': 'Volatile Oil > 7.5%',
+          'Packaging': '5kg / 10kg Vacuum Poly Cartons',
+          'Minimum Order (MOQ)': '5 Tons / LCL Container'
+        }
+      },
+      'star-anise': {
+        title: 'Star Anise (Chakra Phool)',
+        desc: 'Intact 8-pointed star pods with an intense sweet licorice aroma. Essential for Asian cuisines, broths, and masala blends.',
+        img: 'star-anise-whole.jpg',
+        specs: {
+          'Quality Grade': 'Unbroken Whole 8-Point Stars',
+          'Moisture Content': 'Under 10.0% Max',
+          'Packaging': '10kg / 20kg Carton Box with Liner',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'dry-ginger': {
+        title: 'Whole Dry Ginger (Sonth)',
+        desc: 'Cleaned sun-dried whole ginger fingers with high gingerol pungency. Suitable for extraction, milling, and beverage brewing.',
+        img: 'dry-ginger-whole.jpg',
+        specs: {
+          'Form': 'Cleaned Whole Sun-Dried Fingers',
+          'Pungency': 'High Natural Gingerol Content',
+          'Packaging': '25kg / 50kg Jute / PP Bags',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'eagle-coriander': {
+        title: 'Eagle Coriander Seeds (Dhania)',
+        desc: 'Plump whole seeds with mild citrus sweetness. Machine-cleaned from Rajasthan mandis for uniform round size.',
+        img: 'eagle-coriander-seeds.jpg',
+        specs: {
+          'Purity Grade': '99.0% / 99.5% Machine Cleaned',
+          'Volatile Oil': 'Volatile Oil > 0.8% Certified',
+          'Packaging': '25kg / 40kg PP Bags',
+          'Minimum Order (MOQ)': '20 Tons'
+        }
+      },
+      'cinnamon-quills': {
+        title: 'Cinnamon Quills (Dalchini)',
+        desc: 'Multi-layered golden aromatic bark with natural sweetness. Hand-rolled sticks inspected for low coumarin levels.',
+        img: 'cinnamon-quills.jpg',
+        specs: {
+          'Quality': 'Grade C5 / M4 Hand-Rolled Sticks',
+          'Safety Test': 'Low Natural Coumarin Cleared',
+          'Packaging': '10kg / 25kg Bale or Carton Packing',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'black-pepper-bold': {
+        title: 'Black Pepper Bold (Kali Mirch)',
+        desc: 'Sourced from the lush Malabar coast. Bold, heavy berries packed with piperine pungency and woody pine aroma, graded Tellicherry Garbled Extra Bold (TGSEB).',
+        img: 'Gemini_Generated_Image_hoddjvhoddjvhodd.png',
+        specs: {
+          'Grade': 'TGSEB 500GL - 550GL Bold Garbled',
+          'Piperine Pungency': 'Min 4.5% - 5.5% Natural Piperine',
+          'Packaging': '25kg / 50kg Jute Bags with Poly-liner',
+          'Minimum Order (MOQ)': '20 Tons Container'
+        }
+      },
+      'whole-red-chilli': {
+        title: 'Whole Dry Red Chilli (Sannam S4 / Teja)',
+        desc: 'Sun-dried Indian red peppers with brilliant glossy crimson skin and fiery heat. Offered both with stems and stemless, double-sorted to ensure uniform dryness and zero aflatoxins.',
+        img: 'Gemini_Generated_Image_hoddjvhoddjvhodd.png',
+        specs: {
+          'Varieties': 'Sannam S4, Teja & Byadgi Stemless / With Stem',
+          'Moisture & Aflatoxin': 'Moisture < 10%, Aflatoxin Cleared',
+          'Packaging': '10kg / 25kg Jute or Cartoon Pack',
+          'Minimum Order (MOQ)': '15 Tons Container'
+        }
+      },
+      'cloves-handpicked': {
+        title: 'Whole Cloves (Laung Handpicked)',
+        desc: 'Handpicked flower buds with intact crowns and rich dark brown hue. Meticulously inspected for high essential eugenol oil content, zero headless buds, and zero mother cloves.',
+        img: 'star-anise-whole.jpg',
+        specs: {
+          'Grade': 'Handpicked Lal Pari / Zanzibar Quality',
+          'Eugenol Essential Oil': 'Min 18% - 20% Natural Eugenol',
+          'Packaging': '25kg Multi-layer Kraft Bags',
+          'Minimum Order (MOQ)': '10 Tons'
+        }
+      },
+      'bay-leaves': {
+        title: 'Indian Bay Leaves (Tejpatta)',
+        desc: 'Sun-cured botanical leaves with characteristic olive-green color and sweet, clove-cinnamon aroma. Essential foundation for whole spice tempering and royal biryani pots.',
+        img: 'cinnamon-quills.jpg',
+        specs: {
+          'Species': 'Cinnamomum tamala (True Indian Cassia Leaf)',
+          'Aroma': 'Sweet Cinnamon & Clove Balsamic Notes',
+          'Packaging': '10kg / 20kg Bales / Cartons',
+          'Minimum Order (MOQ)': '5 Tons'
+        }
+      }
+    };
+
+    function openModal(id) {
+      const data = productData[id];
+      if (!data) return;
+
+      document.getElementById('modalTitle').innerText = data.title;
+      document.getElementById('modalDesc').innerText = data.desc;
+      document.getElementById('modalImg').src = data.img;
+      
+      let specsHtml = '';
+      for (const [key, val] of Object.entries(data.specs)) {
+        const isMoq = key.toLowerCase().includes('moq') || key.toLowerCase().includes('minimum');
+        const valStyle = isMoq ? 'style="color: #E28873;"' : '';
+        specsHtml += `<div class="m-spec-row"><span>${key}</span><strong ${valStyle}>${val}</strong></div>`;
+      }
+      document.getElementById('modalSpecs').innerHTML = specsHtml;
+
+      document.getElementById('modalWhatsapp').href = `https://wa.me/919056003331?text=Hello%20HBX%20Foods,%20I%20am%20interested%20in%20ordering%20${encodeURIComponent(data.title)}.%20Please%20share%20FOB/CIF%20quote.`;
+
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'modalOverlay') {
+        closeModalDirect();
+      }
+    }
+
+    function closeModalDirect() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+
+</body>
+</html>
