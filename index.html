@@ -69,9 +69,9 @@
     }
 
     .container {
-      max-width: 1240px;
+      max-width: 1360px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 32px;
     }
 
     .badge {
@@ -217,18 +217,21 @@
     /* ---------------- TRUE 1-SCREEN VIEWPORT HERO (ZERO SCROLL) ---------------- */
     .hero {
       height: calc(100vh - 64px);
-      min-height: 560px;
+      min-height: calc(100vh - 64px);
+      max-height: calc(100vh - 64px);
       display: flex;
       align-items: center;
       margin-top: 64px;
       padding: 0;
       position: relative;
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
+      grid-template-columns: 1.15fr 1fr;
+      gap: clamp(24px, 3.5vw, 44px);
       align-items: center;
       width: 100%;
     }
@@ -236,13 +239,25 @@
     .hero-content {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: clamp(14px, 2.4vh, 24px);
+      text-align: left;
+    }
+
+    .hero-header-block {
+      width: 100%;
+    }
+
+    .hero-details-block {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 2vh, 18px);
+      width: 100%;
     }
 
     .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(36px, 3.8vw, 52px);
-      line-height: 1.14;
+      font-size: clamp(34px, 3.8vw, 48px);
+      line-height: 1.15;
       font-weight: 500;
       color: var(--text-main);
       letter-spacing: -0.4px;
@@ -254,9 +269,9 @@
     }
 
     .hero-subtitle {
-      font-size: 15px;
+      font-size: clamp(14px, 1.15vw, 16px);
       color: var(--text-muted);
-      max-width: 480px;
+      max-width: 530px;
       line-height: 1.6;
     }
 
@@ -271,12 +286,13 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--text-main);
       background: var(--bg-card-dark);
-      padding: 6px 14px;
+      padding: 7px 16px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .pill-item .dot {
@@ -288,27 +304,35 @@
 
     .hero-actions {
       display: flex;
+      align-items: center;
       gap: 14px;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
-    /* GRAND ARCH (No Muddy Shadow Smear) */
+    .hero-actions .btn {
+      padding: 13px 28px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* GRAND ARCH (PERFECTLY FILLS SCREEN SPACE WITHOUT OVERFLOW) */
     .hero-visual-wrapper {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
     }
 
     .arch-frame {
       width: 100%;
-      max-width: 420px;
-      height: calc(100vh - 130px);
-      max-height: 470px;
-      border-radius: 160px 160px 24px 24px;
+      max-width: 480px;
+      height: clamp(380px, 78vh, 475px);
+      max-height: calc(100vh - 86px);
+      border-radius: 220px 220px 28px 28px;
       overflow: hidden;
-      border: 1px solid rgba(244, 236, 228, 0.12);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35); /* Crisp, clean shadow */
+      border: 1px solid rgba(244, 236, 228, 0.14);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
       position: relative;
     }
 
@@ -318,65 +342,174 @@
       object-fit: cover;
     }
 
-    /* Safe floating card inside frame bounds */
-    .hero-floating-card {
+    /* ---------------- LUXURY CIRCULAR PROVENANCE PILL ---------------- */
+    .hero-provenance-pill {
       position: absolute;
-      bottom: 16px;
-      left: -16px;
-      background: rgba(22, 19, 16, 0.95);
-      backdrop-filter: blur(14px);
-      border: 1px solid var(--border-accent);
-      border-radius: 16px;
-      padding: 12px 18px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
-      z-index: 2;
+      bottom: 24px;
+      right: -20px;
+      background: #F6EDE2; /* Warm cream luxury pill */
+      border: 1px solid rgba(142, 59, 41, 0.28);
+      border-radius: 999px;
+      padding: 8px 22px 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+      z-index: 10;
+      transition: all 0.3s ease;
+      cursor: default;
     }
 
-    .hero-floating-card .title {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
+    .hero-provenance-pill:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.6);
+      border-color: rgba(142, 59, 41, 0.5);
     }
 
-    .hero-floating-card .moq {
-      font-size: 16px;
+    .provenance-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(142, 59, 41, 0.12); /* Saffron terracotta tint */
+      border: 1.5px solid rgba(142, 59, 41, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(142, 59, 41, 0.15);
+    }
+
+    .provenance-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
+
+    .provenance-info .p-meta {
+      font-size: 8.5px;
       font-weight: 700;
-      color: #FAF6F0;
-      margin-top: 2px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--accent-terracotta); /* Warm terracotta #8E3B29 */
+      line-height: 1;
     }
 
-    /* ---------------- TRUST STATS BAR ---------------- */
+    .provenance-info .p-text {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #4A251D; /* Warm spice tone instead of harsh pitch black */
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    /* ---------------- PROFESSIONAL STATS CARDS (BOXED LUXURY) ---------------- */
     .trust-strip {
-      padding: 36px 0;
+      padding: 42px 0;
       border-top: 1px solid var(--border-subtle);
       border-bottom: 1px solid var(--border-subtle);
-      background: rgba(24, 21, 18, 0.5);
+      background: rgba(18, 16, 14, 0.6);
     }
 
     .stats-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      text-align: center;
+      gap: 18px;
     }
 
-    .stat-item h3 {
+    .stat-card {
+      background: var(--bg-card-dark);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(142, 59, 41, 0.5), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .stat-card:hover {
+      border-color: rgba(142, 59, 41, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    .stat-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(142, 59, 41, 0.12);
+      border: 1px solid rgba(142, 59, 41, 0.22);
+      color: #E28873;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stat-pill {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #A39B92;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    .stat-number {
       font-family: var(--font-serif);
-      font-size: 36px;
+      font-size: clamp(30px, 3.2vw, 38px);
       font-weight: 600;
       color: var(--text-main);
+      line-height: 1.1;
+      margin-top: 2px;
     }
 
-    .stat-item p {
+    .stat-number span {
+      font-size: 18px;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      color: #E28873;
+      margin-left: 2px;
+    }
+
+    .stat-label {
       font-size: 13px;
+      font-weight: 500;
       color: var(--text-muted);
-      margin-top: 2px;
+      line-height: 1.4;
     }
 
     /* ---------------- 4 ARCH CATEGORIES IN 1 ROW ---------------- */
     .products-section {
       padding: 90px 0 60px;
+      scroll-margin-top: 70px;
     }
 
     .section-header {
@@ -512,33 +645,58 @@
       margin-bottom: 18px;
     }
 
-    .heritage-specs {
+    /* ---------------- EDITORIAL SPEC LEDGER (ZERO BOXES, CLEAN HAIRLINES) ---------------- */
+    .heritage-ledger {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 14px;
+      gap: 0 28px;
+      margin-top: 18px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    .h-spec-item {
-      background: rgba(0, 0, 0, 0.04);
-      padding: 12px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(0, 0, 0, 0.06);
+    .ledger-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      transition: all 0.2s ease;
     }
 
-    .h-spec-item strong {
-      display: block;
-      font-size: 14px;
+    .ledger-row:hover {
+      padding-left: 4px;
+    }
+
+    .ledger-num {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-style: italic;
       color: var(--accent-terracotta);
-      margin-bottom: 2px;
-      font-weight: 700;
+      font-weight: 600;
+      line-height: 1.1;
+      width: 24px;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
-    .h-spec-item span {
-      font-size: 12px;
+    .ledger-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .ledger-content strong {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: -0.2px;
+    }
+
+    .ledger-content p {
+      font-size: 12.5px;
       color: var(--text-dark-muted);
-      line-height: 1.35;
-      display: block;
+      line-height: 1.4;
+      margin-bottom: 0;
     }
 
     .heritage-img-frame {
@@ -751,34 +909,34 @@
       color: var(--text-muted);
     }
 
-    /* ---------------- APPLE-STYLE GLASSMORPHIC DOCK (MOBILE ONLY) ---------------- */
+    /* ---------------- APPLE-STYLE GLASSMORPHIC DOCK (COMPACT & SLEEK) ---------------- */
     .apple-mobile-dock {
       display: none; /* Desktop par hidden */
       position: fixed;
-      bottom: 20px;
+      bottom: 14px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
-      width: calc(100% - 36px);
-      max-width: 360px;
+      width: fit-content;
+      max-width: 290px;
     }
 
     .dock-pill {
-      background: rgba(24, 21, 18, 0.78);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
-      border: 1px solid rgba(244, 236, 228, 0.14);
+      background: rgba(22, 19, 16, 0.84);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(244, 236, 228, 0.16);
       border-radius: 9999px;
-      padding: 8px 14px;
+      padding: 4px 8px;
       display: flex;
-      justify-content: space-between;
+      gap: 6px;
       align-items: center;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     }
 
     .dock-btn {
-      width: 44px;
-      height: 44px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -787,9 +945,14 @@
       transition: all 0.25s ease;
     }
 
+    .dock-btn svg {
+      width: 17px;
+      height: 17px;
+    }
+
     .dock-btn:hover, .dock-btn.active {
       color: #FAF6F0;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .dock-btn-cta {
@@ -802,19 +965,99 @@
       color: #FAF6F0;
     }
 
-    /* ---------------- RESPONSIVE BREAKPOINTS ---------------- */
+    /* ---------------- RESPONSIVE BREAKPOINTS (MOBILE FIRST LUXURY) ---------------- */
     @media (max-width: 992px) {
       .hero {
         height: auto;
         min-height: auto;
-        padding: 90px 0 50px;
+        max-height: none;
+        margin-top: 64px;
+        padding: 32px 0 44px;
+        overflow: visible;
       }
-      .hero-grid, .heritage-grid, .inquiry-box {
+      .hero-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+      /* 1. TITLE & BADGE AT THE TOP */
+      .hero-content {
+        display: contents;
+      }
+      /* 1. TITLE AT THE TOP */
+      .hero-header-block {
+        order: 1;
+        width: 100%;
+        text-align: left;
+      }
+      .hero-header-block .hero-title {
+        font-size: clamp(28px, 6.2vw, 36px);
+        line-height: 1.2;
+      }
+      /* 2. PHOTO IN THE MIDDLE (RIGHT AFTER TITLE!) */
+      .hero-visual-wrapper {
+        order: 2;
+        width: 100%;
+        margin: 8px 0 14px;
+      }
+      .arch-frame {
+        width: 100%;
+        max-width: 100%;
+        height: 280px;
+        max-height: 280px;
+        border-radius: 26px;
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      }
+      .hero-provenance-pill {
+        bottom: -14px;
+        right: 14px;
+        padding: 6px 16px 6px 8px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+      }
+      .provenance-circle {
+        width: 32px;
+        height: 32px;
+      }
+      .provenance-circle svg {
+        width: 17px;
+        height: 17px;
+      }
+      .provenance-info .p-meta {
+        font-size: 8px;
+      }
+      .provenance-info .p-text {
+        font-size: 11.5px;
+      }
+      /* 3. SUBTITLE, PILLS & BUTTONS BELOW PHOTO */
+      .hero-details-block {
+        order: 3;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .heritage-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .heritage-img-frame {
+        order: 1; /* Image appears FIRST on mobile */
+        width: 100%;
+        height: 280px;
+        border-radius: 22px;
+      }
+      .heritage-content {
+        order: 2;
+      }
+      .inquiry-box {
         grid-template-columns: 1fr;
-        gap: 36px;
+        gap: 32px;
       }
       .category-row {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
       }
       .hubs-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -833,19 +1076,120 @@
         display: block; /* Mobile par Apple dock visible */
       }
       body {
-        padding-bottom: 70px; /* Dock ke liye space */
+        padding-bottom: 75px; /* Dock ke liye space */
       }
     }
 
     @media (max-width: 600px) {
-      .category-row, .hubs-grid, .form-row, .footer-grid, .heritage-specs {
-        grid-template-columns: 1fr;
-      }
-      .inquiry-box {
-        padding: 30px 18px;
+      .hero {
+        padding: 14px 0 24px;
       }
       .arch-frame {
-        max-height: 380px;
+        height: 270px;
+        max-height: 270px;
+        border-radius: 24px;
+      }
+      .hero-title {
+        font-size: clamp(27px, 7vw, 34px);
+        line-height: 1.18;
+      }
+      .hero-subtitle {
+        font-size: 13.5px;
+        line-height: 1.5;
+        margin-bottom: 12px;
+      }
+      .hero-pills {
+        gap: 6px;
+        margin: 4px 0 10px;
+      }
+      .pill-item {
+        font-size: 11px;
+        padding: 5px 10px;
+      }
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .hero-actions .btn {
+        padding: 11px 12px;
+        font-size: 12px;
+        justify-content: center;
+        text-align: center;
+      }
+      .category-row {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .cat-arch-card {
+        border-radius: 22px;
+        padding: 16px;
+      }
+      .cat-thumb-arch {
+        height: 190px;
+        border-radius: 18px;
+      }
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .stat-card {
+        padding: 16px 14px;
+        border-radius: 16px;
+        gap: 8px;
+      }
+      .stat-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+      }
+      .stat-icon svg {
+        width: 15px;
+        height: 15px;
+      }
+      .stat-pill {
+        font-size: 8px;
+        padding: 2px 6px;
+      }
+      .stat-number {
+        font-size: 26px;
+      }
+      .stat-number span {
+        font-size: 14px;
+      }
+      .stat-label {
+        font-size: 11px;
+        line-height: 1.35;
+      }
+      .hubs-grid, .form-row, .footer-grid, .heritage-specs, .heritage-ledger {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .heritage-img-frame {
+        height: 240px;
+        border-radius: 20px;
+      }
+      .inquiry-box {
+        padding: 28px 18px;
+        border-radius: 22px;
+      }
+      .nav-actions .btn {
+        padding: 7px 14px;
+        font-size: 11.5px;
+      }
+      .logo-brand {
+        gap: 8px;
+      }
+      .logo-img-wrap {
+        width: 36px;
+        height: 36px;
+      }
+      .logo-text h1 {
+        font-size: 17px;
+      }
+      .logo-text span {
+        font-size: 8.5px;
       }
     }
   </style>
@@ -886,35 +1230,49 @@
       <div class="hero-grid">
         
         <div class="hero-content">
-          <h1 class="hero-title">
-            The finest Indian spices & dehydrated ingredients, <em>crafted for the world.</em>
-          </h1>
-          
-          <p class="hero-subtitle">
-            Direct farm sourcing from Rajasthan to international seaports. Whole spices, dehydrated ingredients, and Sortex seeds.
-          </p>
-
-          <div class="hero-pills">
-            <div class="pill-item"><span class="dot"></span> Export Grade Purity</div>
-            <div class="pill-item"><span class="dot"></span> Sortex Double Cleaned</div>
-            <div class="pill-item"><span class="dot"></span> India • USA • UK • UAE</div>
+          <div class="hero-header-block">
+            <h1 class="hero-title">
+              The finest Indian spices &amp;<br />dehydrated crops, <em>crafted for the<br />world.</em>
+            </h1>
           </div>
+          
+          <div class="hero-details-block">
+            <p class="hero-subtitle">
+              Direct farm sourcing from Rajasthan to international seaports. Whole spices, dehydrated vegetables, and Sortex seeds.
+            </p>
 
-          <div class="hero-actions">
-            <a href="#categories" class="btn btn-terracotta">View Product Range</a>
-            <a href="https://wa.me/919056003331?text=Hello%20HBX%20Foods,%20I%20want%20an%20export%20inquiry%20quote." target="_blank" class="btn btn-outline">Instant WhatsApp</a>
+            <div class="hero-pills">
+              <div class="pill-item"><span class="dot"></span> Export Grade Purity</div>
+              <div class="pill-item"><span class="dot"></span> Sortex Double Cleaned</div>
+              <div class="pill-item"><span class="dot"></span> India • USA • UK • UAE</div>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#categories" class="btn btn-terracotta">View Product Range</a>
+              <a href="https://wa.me/919056003331?text=Hello%20HBX%20Foods,%20I%20want%20an%20export%20inquiry%20quote." target="_blank" class="btn btn-outline">Instant WhatsApp</a>
+            </div>
           </div>
         </div>
 
-        <!-- Arch Visual with Floating Card -->
+        <!-- Arch Visual with Floating Circular Provenance Pill -->
         <div class="hero-visual-wrapper">
           <div class="arch-frame">
             <img src="Gemini_Generated_Image_hoddjvhoddjvhodd.png" alt="HBX Foods Whole Spices and Kashmiri Saffron" />
           </div>
-          <div class="hero-floating-card">
-            <div class="title">Minimum Order Quantity</div>
-            <div class="moq">20 Tons / 20 LCL</div>
-            <span style="font-size: 10.5px; color: var(--text-muted);">Container load direct to port</span>
+          
+          <!-- EMBER & THYME LUXURY CIRCULAR PROVENANCE PILL -->
+          <div class="hero-provenance-pill">
+            <div class="provenance-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21V11" stroke="#8E3B29" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 11C12 6.58172 15.5817 3 20 3C20 7.41828 16.4183 11 12 11Z" fill="#D97736" stroke="#8E3B29" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M12 14C12 10.6863 9.31371 8 6 8C6 11.3137 8.68629 14 12 14Z" fill="#E28873" stroke="#8E3B29" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="provenance-info">
+              <span class="p-meta">PROVENANCE & ORIGIN</span>
+              <strong class="p-text">100% Mandi Traceable & Pure</strong>
+            </div>
           </div>
         </div>
 
@@ -922,26 +1280,72 @@
     </div>
   </section>
 
-  <!-- ================= TRUST STATS STRIP ================= -->
+  <!-- ================= TRUST STATS STRIP (LUXURY BOXES) ================= -->
   <div class="trust-strip">
     <div class="container">
       <div class="stats-row">
-        <div class="stat-item">
-          <h3>20 Ton</h3>
-          <p>Standard Export MOQ</p>
+        
+        <!-- Box 1: 20 Ton MOQ -->
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <div class="stat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </div>
+            <span class="stat-pill">FCL Sea Freight</span>
+          </div>
+          <div class="stat-number">20 <span>Tons</span></div>
+          <div class="stat-label">Standard Export MOQ per FCL Container direct to port</div>
         </div>
-        <div class="stat-item">
-          <h3>99.95%</h3>
-          <p>Purity on Hulled Sesame</p>
+
+        <!-- Box 2: 99.95% Purity -->
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <div class="stat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <span class="stat-pill">Optical Sortex</span>
+          </div>
+          <div class="stat-number">99.95<span>%</span></div>
+          <div class="stat-label">Maximum Purity on Hulled Sesame & Supergrains</div>
         </div>
-        <div class="stat-item">
-          <h3>4 Hubs</h3>
-          <p>India, USA, UK & UAE</p>
+
+        <!-- Box 3: 4 Global Hubs -->
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <div class="stat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <span class="stat-pill">Global Reach</span>
+          </div>
+          <div class="stat-number">4 <span>Hubs</span></div>
+          <div class="stat-label">Direct offices in India, United States, United Kingdom & UAE</div>
         </div>
-        <div class="stat-item">
-          <h3>100%</h3>
-          <p>Traceable Mandi Sourcing</p>
+
+        <!-- Box 4: 100% Traceability -->
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <div class="stat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <span class="stat-pill">Farm Traceable</span>
+          </div>
+          <div class="stat-number">100<span>%</span></div>
+          <div class="stat-label">Direct Mandi Sourcing with Zero Middlemen Batch Traceability</div>
         </div>
+
       </div>
     </div>
   </div>
@@ -1020,22 +1424,34 @@
             Direct mandi partnerships across Bikaner, Jodhpur, and Raisinghnagar. 100% batch traceability with zero middlemen.
           </p>
 
-          <div class="heritage-specs">
-            <div class="h-spec-item">
-              <strong>Bikaner & Jodhpur Hubs</strong>
-              <span>Direct farm-gate procurement.</span>
+          <div class="heritage-ledger">
+            <div class="ledger-row">
+              <span class="ledger-num">01</span>
+              <div class="ledger-content">
+                <strong>Bikaner & Jodhpur Hubs</strong>
+                <p>Direct farm-gate procurement from Rajasthan's primary spice mandis.</p>
+              </div>
             </div>
-            <div class="h-spec-item">
-              <strong>Sortex Double Cleaned</strong>
-              <span>99.9% purity optical sorting.</span>
+            <div class="ledger-row">
+              <span class="ledger-num">02</span>
+              <div class="ledger-content">
+                <strong>Sortex Optical Cleaned</strong>
+                <p>99.9% purity grading with dual camera color sorting.</p>
+              </div>
             </div>
-            <div class="h-spec-item">
-              <strong>Controlled Moisture</strong>
-              <span>ISO standards for sea export.</span>
+            <div class="ledger-row">
+              <span class="ledger-num">03</span>
+              <div class="ledger-content">
+                <strong>Controlled Moisture</strong>
+                <p>ISO calibrated storage for prolonged deep-sea container voyages.</p>
+              </div>
             </div>
-            <div class="h-spec-item">
-              <strong>Lab Certified</strong>
-              <span>Full COA report with every container.</span>
+            <div class="ledger-row">
+              <span class="ledger-num">04</span>
+              <div class="ledger-content">
+                <strong>Lab Certified COA</strong>
+                <p>Batch-level testing ensuring certified zero pesticide residues.</p>
+              </div>
             </div>
           </div>
         </div>
