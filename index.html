@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HBX FOODS | Pure Authentic Spices & Dehydrated Ingredients</title>
+  
+  <!-- Google Fonts: Cormorant Garamond (Royal Editorial Serif) + Plus Jakarta Sans (Clean Modern Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------------- DESIGN TOKENS (Noiré & Saffron Muse Architectural Palette) ---------------- */
+    :root {
+      --bg-dark: #12100E;         /* Deep espresso black */
+      --bg-card-dark: #181512;    /* Matte dark slate */
+      --bg-light: #F4ECE4;        /* Warm bone plaster */
+      
+      --accent-terracotta: #8E3B29; /* Saffron Muse burnt terracotta */
+      --accent-terracotta-hover: #752E1E;
+      --accent-olive: #4F5543;     /* Muted organic herb */
+      --accent-wine: #27171C;      /* Deep wine contrast */
+      
+      --text-main: #FAF6F0;       /* Soft linen white */
+      --text-muted: #A39B92;      /* Warm taupe */
+      --text-dark: #1A1614;       /* Espresso text for light sections */
+      --text-dark-muted: #6B6259;
+      
+      --border-subtle: rgba(244, 236, 228, 0.08);
+      --border-accent: rgba(142, 59, 41, 0.35);
+      
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      --radius-pill: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+    }
+
+    body {
+      overflow-x: hidden;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: rgba(142, 59, 41, 0.12);
+      color: #E28873;
+      border: 1px solid rgba(142, 59, 41, 0.25);
+      width: fit-content;
+    }
+
+    .badge-olive {
+      background: rgba(79, 85, 67, 0.2);
+      color: #3F4733;
+      border-color: rgba(79, 85, 67, 0.3);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 26px;
+      border-radius: var(--radius-pill);
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-terracotta {
+      background: var(--accent-terracotta);
+      color: #FAF6F0;
+    }
+
+    .btn-terracotta:hover {
+      background: var(--accent-terracotta-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(142, 59, 41, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-2px);
+    }
+
+    /* ---------------- SLEEK NAVBAR WITH OFFICIAL LOGO ---------------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      background: rgba(18, 16, 14, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px; /* Sleek 64px height */
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-img-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid rgba(244, 236, 228, 0.15);
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-text h1 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .logo-text span {
+      font-size: 9.5px;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-actions .btn {
+      padding: 9px 20px;
+      font-size: 12.5px;
+    }
+
+    /* ---------------- TRUE 1-SCREEN VIEWPORT HERO (ZERO SCROLL) ---------------- */
+    .hero {
+      height: calc(100vh - 64px);
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      margin-top: 64px;
+      padding: 0;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 3.8vw, 52px);
+      line-height: 1.14;
+      font-weight: 500;
+      color: var(--text-main);
+      letter-spacing: -0.4px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: #E28873;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 2px 0;
+    }
+
+    .pill-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-main);
+      background: var(--bg-card-dark);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .pill-item .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-terracotta);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      margin-top: 6px;
+    }
+
+    /* GRAND ARCH (No Muddy Shadow Smear) */
+    .hero-visual-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .arch-frame {
+      width: 100%;
+      max-width: 420px;
+      height: calc(100vh - 130px);
+      max-height: 470px;
+      border-radius: 160px 160px 24px 24px;
+      overflow: hidden;
+      border: 1px solid rgba(244, 236, 228, 0.12);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35); /* Crisp, clean shadow */
+      position: relative;
+    }
+
+    .arch-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Safe floating card inside frame bounds */
+    .hero-floating-card {
+      position: absolute;
+      bottom: 16px;
+      left: -16px;
+      background: rgba(22, 19, 16, 0.95);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border-accent);
+      border-radius: 16px;
+      padding: 12px 18px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+      z-index: 2;
+    }
+
+    .hero-floating-card .title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    .hero-floating-card .moq {
+      font-size: 16px;
+      font-weight: 700;
+      color: #FAF6F0;
+      margin-top: 2px;
+    }
+
+    /* ---------------- TRUST STATS BAR ---------------- */
+    .trust-strip {
+      padding: 36px 0;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(24, 21, 18, 0.5);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .stat-item p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ---------------- 4 ARCH CATEGORIES IN 1 ROW ---------------- */
+    .products-section {
+      padding: 90px 0 60px;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 48px;
+    }
+
+    .section-header .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 3.6vw, 46px);
+      font-weight: 500;
+      margin-top: 10px;
+      line-height: 1.18;
+    }
+
+    .section-header p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .category-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .cat-arch-card {
+      background: var(--bg-card-dark);
+      border: 1px solid var(--border-subtle);
+      border-radius: 32px;
+      padding: 16px 16px 22px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s ease;
+    }
+
+    .cat-arch-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(142, 59, 41, 0.45);
+      background: #1F1B18;
+      box-shadow: 0 16px 36px rgba(142, 59, 41, 0.2);
+    }
+
+    .cat-thumb-arch {
+      width: 100%;
+      height: 150px;
+      border-radius: 90px 90px 18px 18px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      background: #0E0C0B;
+      border: 1px solid rgba(244, 236, 228, 0.08);
+    }
+
+    .cat-thumb-arch img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .cat-arch-card:hover .cat-thumb-arch img {
+      transform: scale(1.06);
+    }
+
+    .cat-badge-dot {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #E28873;
+      margin-bottom: 4px;
+    }
+
+    .cat-title {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text-main);
+    }
+
+    .cat-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 6px 0 14px;
+      line-height: 1.4;
+    }
+
+    .cat-action-link {
+      margin-top: auto;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-terracotta);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    /* ---------------- RESTORED COMPACT HERITAGE SECTION ---------------- */
+    .heritage-section {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      padding: 50px 0;
+      border-radius: 32px;
+      margin: 40px auto;
+    }
+
+    .heritage-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .heritage-content h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.2vw, 40px);
+      line-height: 1.15;
+      font-weight: 600;
+      margin: 10px 0;
+      color: var(--text-dark);
+    }
+
+    .heritage-content p {
+      font-size: 14.5px;
+      color: var(--text-dark-muted);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .heritage-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .h-spec-item {
+      background: rgba(0, 0, 0, 0.04);
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .h-spec-item strong {
+      display: block;
+      font-size: 14px;
+      color: var(--accent-terracotta);
+      margin-bottom: 2px;
+      font-weight: 700;
+    }
+
+    .h-spec-item span {
+      font-size: 12px;
+      color: var(--text-dark-muted);
+      line-height: 1.35;
+      display: block;
+    }
+
+    .heritage-img-frame {
+      border-radius: 140px 140px 24px 24px;
+      overflow: hidden;
+      height: 380px;
+      width: 100%;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .heritage-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ---------------- GLOBAL HUBS (Windows Emoji Fix) ---------------- */
+    .global-section {
+      padding: 80px 0;
+    }
+
+    .hubs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .hub-card {
+      background: var(--bg-card-dark);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .hub-card:hover {
+      border-color: var(--border-accent);
+      background: #1F1B18;
+    }
+
+    .hub-code {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #E28873;
+      background: rgba(142, 59, 41, 0.12);
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(142, 59, 41, 0.25);
+      width: fit-content;
+    }
+
+    .hub-code::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-terracotta);
+    }
+
+    .hub-card h4 {
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .hub-card p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .hub-card .status {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #8E3B29;
+      margin-top: auto;
+    }
+
+    /* ---------------- B2B INQUIRY DRAWER ---------------- */
+    .inquiry-box {
+      background: var(--accent-wine);
+      border: 1px solid var(--border-accent);
+      border-radius: 28px;
+      padding: 48px 40px;
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .inquiry-text h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(30px, 3.2vw, 42px);
+      line-height: 1.2;
+    }
+
+    .inquiry-text p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .quick-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 13px 16px;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      outline: none;
+    }
+
+    .form-input:focus, .form-select:focus {
+      border-color: var(--accent-terracotta);
+    }
+
+    .form-select option {
+      background: var(--bg-card-dark);
+      color: var(--text-main);
+    }
+
+    /* ---------------- FOOTER WITH OFFICIAL LOGO ---------------- */
+    footer {
+      padding: 70px 0 24px;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 14px;
+      max-width: 300px;
+    }
+
+    .footer-col h5 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-main);
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-col a:hover {
+      color: var(--text-main);
+    }
+
+    .contact-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ---------------- APPLE-STYLE GLASSMORPHIC DOCK (MOBILE ONLY) ---------------- */
+    .apple-mobile-dock {
+      display: none; /* Desktop par hidden */
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: calc(100% - 36px);
+      max-width: 360px;
+    }
+
+    .dock-pill {
+      background: rgba(24, 21, 18, 0.78);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(244, 236, 228, 0.14);
+      border-radius: 9999px;
+      padding: 8px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .dock-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: all 0.25s ease;
+    }
+
+    .dock-btn:hover, .dock-btn.active {
+      color: #FAF6F0;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .dock-btn-cta {
+      background: var(--accent-terracotta);
+      color: #FAF6F0;
+    }
+
+    .dock-btn-cta:hover {
+      background: var(--accent-terracotta-hover);
+      color: #FAF6F0;
+    }
+
+    /* ---------------- RESPONSIVE BREAKPOINTS ---------------- */
+    @media (max-width: 992px) {
+      .hero {
+        height: auto;
+        min-height: auto;
+        padding: 90px 0 50px;
+      }
+      .hero-grid, .heritage-grid, .inquiry-box {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .category-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hubs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .apple-mobile-dock {
+        display: block; /* Mobile par Apple dock visible */
+      }
+      body {
+        padding-bottom: 70px; /* Dock ke liye space */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .category-row, .hubs-grid, .form-row, .footer-grid, .heritage-specs {
+        grid-template-columns: 1fr;
+      }
+      .inquiry-box {
+        padding: 30px 18px;
+      }
+      .arch-frame {
+        max-height: 380px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER / NAVBAR (WITH OFFICIAL LOGO) ================= -->
+  <header>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="logo-brand">
+          <div class="logo-img-wrap">
+            <img src="Logo - HBX Food.jpeg" alt="HBX Foods Official Logo" />
+          </div>
+          <div class="logo-text">
+            <h1>HBX Foods</h1>
+            <span>Pure • Authentic • Global</span>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#categories">Product Categories</a></li>
+          <li><a href="#heritage">Origin & Sourcing</a></li>
+          <li><a href="#global">Export Hubs</a></li>
+          <li><a href="#inquiry">MOQ & Quote</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="#inquiry" class="btn btn-terracotta">Request Quote</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION (CLEAN 1-SCREEN VIEWPORT) ================= -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        
+        <div class="hero-content">
+          <h1 class="hero-title">
+            The finest Indian spices & dehydrated ingredients, <em>crafted for the world.</em>
+          </h1>
+          
+          <p class="hero-subtitle">
+            Direct farm sourcing from Rajasthan to international seaports. Whole spices, dehydrated ingredients, and Sortex seeds.
+          </p>
+
+          <div class="hero-pills">
+            <div class="pill-item"><span class="dot"></span> Export Grade Purity</div>
+            <div class="pill-item"><span class="dot"></span> Sortex Double Cleaned</div>
+            <div class="pill-item"><span class="dot"></span> India • USA • UK • UAE</div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#categories" class="btn btn-terracotta">View Product Range</a>
+            <a href="https://wa.me/919056003331?text=Hello%20HBX%20Foods,%20I%20want%20an%20export%20inquiry%20quote." target="_blank" class="btn btn-outline">Instant WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- Arch Visual with Floating Card -->
+        <div class="hero-visual-wrapper">
+          <div class="arch-frame">
+            <img src="Gemini_Generated_Image_hoddjvhoddjvhodd.png" alt="HBX Foods Whole Spices and Kashmiri Saffron" />
+          </div>
+          <div class="hero-floating-card">
+            <div class="title">Minimum Order Quantity</div>
+            <div class="moq">20 Tons / 20 LCL</div>
+            <span style="font-size: 10.5px; color: var(--text-muted);">Container load direct to port</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRUST STATS STRIP ================= -->
+  <div class="trust-strip">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat-item">
+          <h3>20 Ton</h3>
+          <p>Standard Export MOQ</p>
+        </div>
+        <div class="stat-item">
+          <h3>99.95%</h3>
+          <p>Purity on Hulled Sesame</p>
+        </div>
+        <div class="stat-item">
+          <h3>4 Hubs</h3>
+          <p>India, USA, UK & UAE</p>
+        </div>
+        <div class="stat-item">
+          <h3>100%</h3>
+          <p>Traceable Mandi Sourcing</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 4 CORE PRODUCT CATEGORIES (READY FOR SEPARATE PAGES) ================= -->
+  <section class="products-section" id="categories">
+    <div class="container">
+      
+      <div class="section-header">
+        <div class="badge badge-olive">Export Portfolio</div>
+        <h2 class="section-title">Four Core Supply Categories</h2>
+        <p>Explore our specialized wholesale divisions. Each product line is graded to international phytosanitary standards.</p>
+      </div>
+
+      <!-- 4 ARCH CARDS IN 1 ROW -->
+      <div class="category-row">
+        
+        <!-- Category 1: Dehydrated Ingredients -->
+        <a href="dehydrated.html" class="cat-arch-card">
+          <div class="cat-thumb-arch">
+            <img src="Gemini_Generated_Image_rh84jvrh84jvrh84.png" alt="Dehydrated Onion and Garlic Ingredients" />
+          </div>
+          <div class="cat-badge-dot">Category 01</div>
+          <div class="cat-title">Dehydrated Ingredients</div>
+          <div class="cat-desc">White & Pink Onion Flakes, Garlic Minced & Granules</div>
+          <div class="cat-action-link">View Catalogue →</div>
+        </a>
+
+        <!-- Category 2: Whole & Exotic Spices -->
+        <a href="whole-spices.html" class="cat-arch-card">
+          <div class="cat-thumb-arch">
+            <img src="Gemini_Generated_Image_hoddjvhoddjvhodd.png" alt="Whole Spices and Kashmiri Saffron" />
+          </div>
+          <div class="cat-badge-dot">Category 02</div>
+          <div class="cat-title">Whole & Exotic Spices</div>
+          <div class="cat-desc">Kashmiri Kesar, Bold Cardamom, Star Anise & Cinnamon</div>
+          <div class="cat-action-link">View Catalogue →</div>
+        </a>
+
+        <!-- Category 3: Sortex Export Seeds -->
+        <a href="seeds.html" class="cat-arch-card">
+          <div class="cat-thumb-arch">
+            <img src="image.png" alt="Clean Sortex Sesame and Cumin Seeds" />
+          </div>
+          <div class="cat-badge-dot">Category 03</div>
+          <div class="cat-title">Sortex Clean Seeds</div>
+          <div class="cat-desc">99.95% Hulled Sesame, Cumin, Chia & Black Cumin</div>
+          <div class="cat-action-link">View Catalogue →</div>
+        </a>
+
+        <!-- Category 4: Pure Ground Spices -->
+        <a href="ground-spices.html" class="cat-arch-card">
+          <div class="cat-thumb-arch">
+            <img src="image copy.png" alt="Pure Ground Turmeric and Chilli Masala" />
+          </div>
+          <div class="cat-badge-dot">Category 04</div>
+          <div class="cat-title">Ground Spices & Blends</div>
+          <div class="cat-desc">High-Curcumin Turmeric, Kashmiri Chilli & Masalas</div>
+          <div class="cat-action-link">View Catalogue →</div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= RESTORED COMPACT HERITAGE SECTION ================= -->
+  <section class="heritage-section" id="heritage">
+    <div class="container">
+      <div class="heritage-grid">
+        
+        <div class="heritage-content">
+          <div class="badge badge-olive" style="background: rgba(79, 85, 67, 0.12); color: #3F4733; border: 1px solid rgba(79, 85, 67, 0.25);">Rooted in Origin</div>
+          <h2>Straight from Rajasthan's spice heartlands.</h2>
+          <p>
+            Direct mandi partnerships across Bikaner, Jodhpur, and Raisinghnagar. 100% batch traceability with zero middlemen.
+          </p>
+
+          <div class="heritage-specs">
+            <div class="h-spec-item">
+              <strong>Bikaner & Jodhpur Hubs</strong>
+              <span>Direct farm-gate procurement.</span>
+            </div>
+            <div class="h-spec-item">
+              <strong>Sortex Double Cleaned</strong>
+              <span>99.9% purity optical sorting.</span>
+            </div>
+            <div class="h-spec-item">
+              <strong>Controlled Moisture</strong>
+              <span>ISO standards for sea export.</span>
+            </div>
+            <div class="h-spec-item">
+              <strong>Lab Certified</strong>
+              <span>Full COA report with every container.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="heritage-img-frame">
+          <img src="image copy 2.png" alt="HBX Foods spice harvest and sourcing in Rajasthan" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GLOBAL PRESENCE ================= -->
+  <section class="global-section" id="global">
+    <div class="container">
+      
+      <div class="section-header">
+        <div class="badge">Worldwide Logistics</div>
+        <h2 class="section-title">Our Global Presence</h2>
+        <p>Local coordination offices to handle customs, logistics, and supply continuity.</p>
+      </div>
+
+      <div class="hubs-grid">
+        <div class="hub-card">
+          <div class="hub-code">IND</div>
+          <h4>India (Main Office)</h4>
+          <p>5th Floor Continental Tower, Sector 74, Mohali, Punjab - 160071</p>
+          <div class="status">Global Processing HQ</div>
+        </div>
+
+        <div class="hub-card">
+          <div class="hub-code">USA</div>
+          <h4>United States</h4>
+          <p>820 Jackwood St SE, Salem, OR 97306</p>
+          <div class="status">North America Sales</div>
+        </div>
+
+        <div class="hub-card">
+          <div class="hub-code">GBR</div>
+          <h4>United Kingdom</h4>
+          <p>Stewart Close, Kingsbury, London NW9 8AJ</p>
+          <div class="status">European Logistics</div>
+        </div>
+
+        <div class="hub-card">
+          <div class="hub-code">UAE</div>
+          <h4>United Arab Emirates</h4>
+          <p>Sharjah Media City, Sharjah, UAE</p>
+          <div class="status">Middle East Hub</div>
+        </div>
+      </div>
+
+      <!-- Quick B2B Inquiry Box -->
+      <div class="inquiry-box" id="inquiry">
+        <div class="inquiry-text">
+          <div class="badge">Commercial Inquiries</div>
+          <h2>Ready to import high-purity spices?</h2>
+          <p>
+            Connect directly with our export desk. Tell us your target destination port and required volume. We provide formal CIF/FOB pricing within 1 business day.
+          </p>
+          <div style="margin-top: 20px; font-size: 13.5px; color: #FAF6F0;">
+            <strong>Export Standard:</strong> Minimum Order Quantity is 20 Tons / 20 LCL.
+          </div>
+        </div>
+
+        <form class="quick-form" onsubmit="handleInquiry(event)">
+          <div class="form-row">
+            <input type="text" id="buyerName" class="form-input" placeholder="Your Name" required />
+            <input type="text" id="buyerCountry" class="form-input" placeholder="Destination Port / Country" required />
+          </div>
+          <div class="form-row">
+            <select id="buyerCategory" class="form-select" required>
+              <option value="">Select Supply Category</option>
+              <option value="Dehydrated Ingredients">Dehydrated Ingredients (Onion/Garlic)</option>
+              <option value="Whole & Exotic Spices">Whole & Exotic Spices (Saffron/Cardamom)</option>
+              <option value="Sortex Export Seeds">Sortex Seeds (Sesame/Cumin/Chia)</option>
+              <option value="Ground Spices & Masalas">Ground Spices & Blended Masalas</option>
+            </select>
+            <input type="text" id="buyerQty" class="form-input" placeholder="Volume (e.g. 20 Tons)" required />
+          </div>
+          <button type="submit" class="btn btn-terracotta" style="width: 100%; padding: 15px;">
+            Send Inquiry via WhatsApp
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER (WITH OFFICIAL LOGO) ================= -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <div class="logo-brand">
+            <div class="logo-img-wrap">
+              <img src="Logo - HBX Food.jpeg" alt="HBX Foods Official Logo" />
+            </div>
+            <div class="logo-text">
+              <h1>HBX Foods</h1>
+              <span>Pure • Authentic • Global</span>
+            </div>
+          </div>
+          <p>
+            Global processor and exporter of Indian whole spices, seeds, ground powders, and dehydrated ingredients.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Categories</h5>
+          <ul>
+            <li><a href="dehydrated.html">Dehydrated Ingredients</a></li>
+            <li><a href="whole-spices.html">Whole & Exotic Spices</a></li>
+            <li><a href="seeds.html">Sortex Clean Seeds</a></li>
+            <li><a href="ground-spices.html">Ground Masalas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Direct Contact</h5>
+          <div class="contact-line">📞 +91 90560-03331</div>
+          <div class="contact-line">📞 +91 77175-75257</div>
+          <div class="contact-line">📞 +1 (541) 395-3999</div>
+          <div class="contact-line">✉️ info@hbxfoods.com</div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Compliance</h5>
+          <ul>
+            <li><a href="#">Export Inspection Certified</a></li>
+            <li><a href="#">FSSAI / Global Standards</a></li>
+            <li><a href="#">Phytosanitary Cleared</a></li>
+            <li><a href="https://hbxfoods.com" target="_blank">Official: hbxfoods.com</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 HBX Foods. All international rights reserved.</div>
+        <div>MOQ: 20 Tons / 20 LCL • Bulk Export Only</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= APPLE-STYLE GLASSMORPHIC MOBILE DOCK (ICONS ONLY) ================= -->
+  <aside class="apple-mobile-dock" aria-label="Mobile Navigation">
+    <div class="dock-pill">
+      <!-- 1. Home -->
+      <a href="#" class="dock-btn active" title="Home">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </a>
+
+      <!-- 2. Categories -->
+      <a href="#categories" class="dock-btn" title="Product Categories">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+      </a>
+
+      <!-- 3. Origin & Sourcing -->
+      <a href="#heritage" class="dock-btn" title="Origin & Sourcing">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+      </a>
+
+      <!-- 4. Global Hubs -->
+      <a href="#global" class="dock-btn" title="Export Hubs">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+      </a>
+
+      <!-- 5. WhatsApp Inquire -->
+      <a href="https://wa.me/919056003331?text=Hello%20HBX%20Foods,%20I%20want%20an%20export%20inquiry%20quote." target="_blank" class="dock-btn dock-btn-cta" title="WhatsApp Quote">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ================= LOGIC & INTERACTIVITY ================= -->
+  <script>
+    function handleInquiry(e) {
+      e.preventDefault();
+      const name = document.getElementById('buyerName').value;
+      const country = document.getElementById('buyerCountry').value;
+      const category = document.getElementById('buyerCategory').value;
+      const qty = document.getElementById('buyerQty').value;
+
+      const message = `Hello HBX Foods Export Team,%0A%0AMy name is ${encodeURIComponent(name)} from ${encodeURIComponent(country)}.%0AI am interested in ordering: ${encodeURIComponent(category)}%0ARequired Volume: ${encodeURIComponent(qty)}%0A%0APlease provide FOB/CIF quotation.`;
+      
+      window.open(`https://wa.me/919056003331?text=${message}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
